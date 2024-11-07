@@ -1,0 +1,1451 @@
+{
+  "rounds": [
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Red",
+          "count": 20,
+          "start": 0,
+          "duration": 15
+        }
+      ],
+      "roundNumber": 0,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Red",
+          "count": 20,
+          "start": 0,
+          "duration": 15
+        }
+      ],
+      "roundNumber": 1,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Red",
+          "count": 35,
+          "start": 0,
+          "duration": 19.139999389648438
+        }
+      ],
+      "roundNumber": 2,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Red",
+          "count": 12,
+          "start": 0,
+          "duration": 7.099999904632568
+        },
+        {
+          "bloon": "Blue",
+          "count": 6,
+          "start": 8.699999809265137,
+          "duration": 3
+        },
+        {
+          "bloon": "Red",
+          "count": 17,
+          "start": 13.710000038146973,
+          "duration": 8
+        }
+      ],
+      "roundNumber": 3,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Red",
+          "count": 32,
+          "start": 0,
+          "duration": 15.600000381469727
+        },
+        {
+          "bloon": "Blue",
+          "count": 18,
+          "start": 10.899999618530273,
+          "duration": 2.5
+        },
+        {
+          "bloon": "Red",
+          "count": 13,
+          "start": 20.510000228881836,
+          "duration": 3.799999952316284
+        }
+      ],
+      "roundNumber": 4,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Blue",
+          "count": 16,
+          "start": 0,
+          "duration": 9.140000343322754
+        },
+        {
+          "bloon": "Red",
+          "count": 6,
+          "start": 10,
+          "duration": 5
+        },
+        {
+          "bloon": "Blue",
+          "count": 15,
+          "start": 16,
+          "duration": 11.199999809265137
+        }
+      ],
+      "roundNumber": 5,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Green",
+          "count": 4,
+          "start": 0,
+          "duration": 2.8499999046325684
+        },
+        {
+          "bloon": "Red",
+          "count": 15,
+          "start": 6.829999923706055,
+          "duration": 8.300000190734863
+        },
+        {
+          "bloon": "Blue",
+          "count": 15,
+          "start": 16,
+          "duration": 13.15999984741211
+        }
+      ],
+      "roundNumber": 6,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Blue",
+          "count": 10,
+          "start": 0,
+          "duration": 5.139999866485596
+        },
+        {
+          "bloon": "Green",
+          "count": 6,
+          "start": 6.300000190734863,
+          "duration": 6
+        },
+        {
+          "bloon": "Red",
+          "count": 20,
+          "start": 13.812000274658203,
+          "duration": 12.5
+        },
+        {
+          "bloon": "Blue",
+          "count": 10,
+          "start": 26.809999465942383,
+          "duration": 4.5
+        }
+      ],
+      "roundNumber": 7,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Blue",
+          "count": 22,
+          "start": 0,
+          "duration": 13
+        },
+        {
+          "bloon": "Green",
+          "count": 2,
+          "start": 14,
+          "duration": 0.6000000238418579
+        },
+        {
+          "bloon": "Red",
+          "count": 10,
+          "start": 17,
+          "duration": 2
+        },
+        {
+          "bloon": "Green",
+          "count": 12,
+          "start": 21,
+          "duration": 12
+        }
+      ],
+      "roundNumber": 8,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Green",
+          "count": 55,
+          "start": 0,
+          "duration": 35
+        }
+      ],
+      "roundNumber": 9,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Blue",
+          "count": 45,
+          "start": 0,
+          "duration": 26.25
+        },
+        {
+          "bloon": "Blue",
+          "count": 15,
+          "start": 26.25,
+          "duration": 6.75
+        },
+        {
+          "bloon": "Blue",
+          "count": 16,
+          "start": 33,
+          "duration": 3
+        }
+      ],
+      "roundNumber": 10,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Yellow",
+          "count": 6,
+          "start": 0,
+          "duration": 2
+        },
+        {
+          "bloon": "Green",
+          "count": 24,
+          "start": 8.800000190734863,
+          "duration": 12.600000381469727
+        },
+        {
+          "bloon": "Blue",
+          "count": 20,
+          "start": 21.600000381469727,
+          "duration": 7.599999904632568
+        },
+        {
+          "bloon": "Red",
+          "count": 20,
+          "start": 29.200000762939453,
+          "duration": 9
+        }
+      ],
+      "roundNumber": 11,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Green",
+          "count": 22,
+          "start": 0,
+          "duration": 11.920000076293945
+        },
+        {
+          "bloon": "Blue",
+          "count": 34,
+          "start": 13,
+          "duration": 13.600000381469727
+        },
+        {
+          "bloon": "Yellow",
+          "count": 11,
+          "start": 32.5,
+          "duration": 7
+        }
+      ],
+      "roundNumber": 12,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Blue",
+          "count": 63,
+          "start": 0,
+          "duration": 38.22999954223633
+        },
+        {
+          "bloon": "Green",
+          "count": 29,
+          "start": 2.819999933242798,
+          "duration": 38.22999954223633
+        }
+      ],
+      "roundNumber": 13,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Red",
+          "count": 28,
+          "start": 0,
+          "duration": 15.449999809265137
+        },
+        {
+          "bloon": "Red",
+          "count": 49,
+          "start": 15.130000114440918,
+          "duration": 27.280000686645508
+        },
+        {
+          "bloon": "Blue",
+          "count": 8,
+          "start": 4.539999961853027,
+          "duration": 1.7799999713897705
+        },
+        {
+          "bloon": "Blue",
+          "count": 16,
+          "start": 25.479999542236328,
+          "duration": 2.200000047683716
+        },
+        {
+          "bloon": "Green",
+          "count": 8,
+          "start": 9.079999923706055,
+          "duration": 1.7699999809265137
+        },
+        {
+          "bloon": "Green",
+          "count": 8,
+          "start": 31.540000915527344,
+          "duration": 2.2100000381469727
+        },
+        {
+          "bloon": "Yellow",
+          "count": 6,
+          "start": 13.640000343322754,
+          "duration": 1.5099999904632568
+        },
+        {
+          "bloon": "Yellow",
+          "count": 8,
+          "start": 37.75,
+          "duration": 2.4800000190734863
+        }
+      ],
+      "roundNumber": 14,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Red",
+          "count": 35,
+          "start": 0,
+          "duration": 43.70000076293945
+        },
+        {
+          "bloon": "Pink",
+          "count": 8,
+          "start": 30.700000762939453,
+          "duration": 5.25
+        },
+        {
+          "bloon": "Green",
+          "count": 21,
+          "start": 10,
+          "duration": 26
+        },
+        {
+          "bloon": "Yellow",
+          "count": 17,
+          "start": 15.520000457763672,
+          "duration": 21
+        },
+        {
+          "bloon": "Blue",
+          "count": 26,
+          "start": 4.860000133514404,
+          "duration": 35
+        }
+      ],
+      "roundNumber": 15,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Green",
+          "count": 56,
+          "start": 0,
+          "duration": 30.469999313354492
+        },
+        {
+          "bloon": "Yellow",
+          "count": 22,
+          "start": 41,
+          "duration": 4
+        },
+        {
+          "bloon": "Green",
+          "count": 56,
+          "start": 0.5600000023841858,
+          "duration": 30.469999313354492
+        }
+      ],
+      "roundNumber": 16,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "YellowRegrow",
+          "count": 111,
+          "start": 0,
+          "duration": 46.22999954223633
+        }
+      ],
+      "roundNumber": 17,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Green",
+          "count": 106,
+          "start": 0,
+          "duration": 44.20000076293945
+        },
+        {
+          "bloon": "Green",
+          "count": 35,
+          "start": 44,
+          "duration": 3.2200000286102295
+        }
+      ],
+      "roundNumber": 18,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Green",
+          "count": 30,
+          "start": 0,
+          "duration": 8.90999984741211
+        },
+        {
+          "bloon": "YellowRegrow",
+          "count": 15,
+          "start": 8.800000190734863,
+          "duration": 7.199999809265137
+        },
+        {
+          "bloon": "Pink",
+          "count": 46,
+          "start": 18.3700008392334,
+          "duration": 23.5
+        },
+        {
+          "bloon": "Yellow",
+          "count": 12,
+          "start": 41.459999084472656,
+          "duration": 7
+        }
+      ],
+      "roundNumber": 19,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Black",
+          "count": 56,
+          "start": 0,
+          "duration": 49.720001220703125
+        }
+      ],
+      "roundNumber": 20,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Pink",
+          "count": 28,
+          "start": 30.399999618530273,
+          "duration": 14.420000076293945
+        },
+        {
+          "bloon": "Pink",
+          "count": 11,
+          "start": 46.77000045776367,
+          "duration": 4
+        },
+        {
+          "bloon": "Yellow",
+          "count": 112,
+          "start": 0.25,
+          "duration": 28
+        }
+      ],
+      "roundNumber": 21,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "White",
+          "count": 104,
+          "start": 0,
+          "duration": 51.900001525878906
+        }
+      ],
+      "roundNumber": 22,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Black",
+          "count": 54,
+          "start": 0,
+          "duration": 19.40999984741211
+        },
+        {
+          "bloon": "White",
+          "count": 54,
+          "start": 37.43000030517578,
+          "duration": 15.529999732971191
+        }
+      ],
+      "roundNumber": 23,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "GreenCamo",
+          "count": 6,
+          "start": 0,
+          "duration": 6
+        },
+        {
+          "bloon": "Blue",
+          "count": 120,
+          "start": 18,
+          "duration": 35.900001525878906
+        }
+      ],
+      "roundNumber": 24,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "YellowRegrow",
+          "count": 65,
+          "start": 0,
+          "duration": 36.41999816894531
+        },
+        {
+          "bloon": "Purple",
+          "count": 26,
+          "start": 44.599998474121094,
+          "duration": 10.399999618530273
+        }
+      ],
+      "roundNumber": 25,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Pink",
+          "count": 89,
+          "start": 0,
+          "duration": 33.56999969482422
+        },
+        {
+          "bloon": "Zebra",
+          "count": 15,
+          "start": 42.83000183105469,
+          "duration": 13.220000267028809
+        }
+      ],
+      "roundNumber": 26,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Yellow",
+          "count": 74,
+          "start": 44,
+          "duration": 12.84000015258789
+        },
+        {
+          "bloon": "Green",
+          "count": 74,
+          "start": 31.600000381469727,
+          "duration": 12.220000267028809
+        },
+        {
+          "bloon": "Blue",
+          "count": 99,
+          "start": 19.200000762939453,
+          "duration": 13.300000190734863
+        },
+        {
+          "bloon": "Red",
+          "count": 166,
+          "start": 0.029999999329447746,
+          "duration": 20
+        }
+      ],
+      "roundNumber": 27,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Lead",
+          "count": 69,
+          "start": 0,
+          "duration": 57.91999816894531
+        }
+      ],
+      "roundNumber": 28,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Yellow",
+          "count": 192,
+          "start": 0,
+          "duration": 42.45000076293945
+        },
+        {
+          "bloon": "YellowRegrow",
+          "count": 57,
+          "start": 49.20000076293945,
+          "duration": 9.649999618530273
+        }
+      ],
+      "roundNumber": 29,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Lead",
+          "count": 41,
+          "start": 0,
+          "duration": 59.77000045776367
+        }
+      ],
+      "roundNumber": 30,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Zebra",
+          "count": 30,
+          "start": 23.5,
+          "duration": 19.40999984741211
+        },
+        {
+          "bloon": "ZebraRegrow",
+          "count": 7,
+          "start": 54.15999984741211,
+          "duration": 6.53000020980835
+        },
+        {
+          "bloon": "Black",
+          "count": 30,
+          "start": 0,
+          "duration": 19.40999984741211
+        },
+        {
+          "bloon": "White",
+          "count": 30,
+          "start": 1.3300000429153442,
+          "duration": 19.40999984741211
+        }
+      ],
+      "roundNumber": 31,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Black",
+          "count": 33,
+          "start": 0,
+          "duration": 19.81999969482422
+        },
+        {
+          "bloon": "White",
+          "count": 44,
+          "start": 22.760000228881836,
+          "duration": 24.219999313354492
+        },
+        {
+          "bloon": "Purple",
+          "count": 22,
+          "start": 48.36000061035156,
+          "duration": 13.199999809265137
+        }
+      ],
+      "roundNumber": 32,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "YellowCamo",
+          "count": 32,
+          "start": 13.15999984741211,
+          "duration": 49.290000915527344
+        },
+        {
+          "bloon": "RedCamo",
+          "count": 49,
+          "start": 0,
+          "duration": 12.319999694824219
+        }
+      ],
+      "roundNumber": 33,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Yellow",
+          "count": 281,
+          "start": 0,
+          "duration": 63.310001373291016
+        },
+        {
+          "bloon": "Zebra",
+          "count": 10,
+          "start": 15.15999984741211,
+          "duration": 31.799999237060547
+        }
+      ],
+      "roundNumber": 34,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "White",
+          "count": 47,
+          "start": 0,
+          "duration": 19
+        },
+        {
+          "bloon": "Rainbow",
+          "count": 9,
+          "start": 27.270000457763672,
+          "duration": 4.329999923706055
+        },
+        {
+          "bloon": "Pink",
+          "count": 66,
+          "start": 36.5,
+          "duration": 13.300000190734863
+        },
+        {
+          "bloon": "Black",
+          "count": 57,
+          "start": 50.86000061035156,
+          "duration": 13.300000190734863
+        }
+      ],
+      "roundNumber": 35,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Pink",
+          "count": 123,
+          "start": 0,
+          "duration": 4.679999828338623
+        },
+        {
+          "bloon": "Pink",
+          "count": 123,
+          "start": 22.299999237060547,
+          "duration": 4.179999828338623
+        },
+        {
+          "bloon": "Pink",
+          "count": 185,
+          "start": 52.599998474121094,
+          "duration": 12.390000343322754
+        },
+        {
+          "bloon": "GreenRegrowCamo",
+          "count": 30,
+          "start": 12.390000343322754,
+          "duration": 4.179999828338623
+        },
+        {
+          "bloon": "GreenRegrowCamo",
+          "count": 30,
+          "start": 39.2400016784668,
+          "duration": 4.179999828338623
+        }
+      ],
+      "roundNumber": 36,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Black",
+          "count": 37,
+          "start": 0,
+          "duration": 16.420000076293945
+        },
+        {
+          "bloon": "White",
+          "count": 37,
+          "start": 17.280000686645508,
+          "duration": 16.420000076293945
+        },
+        {
+          "bloon": "Lead",
+          "count": 22,
+          "start": 34.560001373291016,
+          "duration": 12.100000381469727
+        },
+        {
+          "bloon": "Zebra",
+          "count": 15,
+          "start": 47.5,
+          "duration": 7.769999980926514
+        },
+        {
+          "bloon": "WhiteCamo",
+          "count": 10,
+          "start": 63.560001373291016,
+          "duration": 2.4200000762939453
+        }
+      ],
+      "roundNumber": 37,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "White",
+          "count": 38,
+          "start": 0,
+          "duration": 8.260000228881836
+        },
+        {
+          "bloon": "Lead",
+          "count": 32,
+          "start": 11,
+          "duration": 19.649999618530273
+        },
+        {
+          "bloon": "Zebra",
+          "count": 22,
+          "start": 27.700000762939453,
+          "duration": 14.399999618530273
+        },
+        {
+          "bloon": "Ceramic",
+          "count": 4,
+          "start": 62.150001525878906,
+          "duration": 4.590000152587891
+        },
+        {
+          "bloon": "Pink",
+          "count": 96,
+          "start": 4.590000152587891,
+          "duration": 53.689998626708984
+        }
+      ],
+      "roundNumber": 38,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Black",
+          "count": 17,
+          "start": 0,
+          "duration": 9.140000343322754
+        },
+        {
+          "bloon": "White",
+          "count": 17,
+          "start": 10.149999618530273,
+          "duration": 9.140000343322754
+        },
+        {
+          "bloon": "RainbowRegrow",
+          "count": 3,
+          "start": 64,
+          "duration": 3.559999942779541
+        },
+        {
+          "bloon": "Zebra",
+          "count": 35,
+          "start": 22.760000228881836,
+          "duration": 19.299999237060547
+        },
+        {
+          "bloon": "Rainbow",
+          "count": 32,
+          "start": 44.099998474121094,
+          "duration": 17.270000457763672
+        }
+      ],
+      "roundNumber": 39,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Moab",
+          "count": 22,
+          "start": 0,
+          "duration": 68.25
+        }
+      ],
+      "roundNumber": 40,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Black",
+          "count": 89,
+          "start": 0,
+          "duration": 28.049999237060547
+        },
+        {
+          "bloon": "Zebra",
+          "count": 89,
+          "start": 28.15999984741211,
+          "duration": 40.880001068115234
+        }
+      ],
+      "roundNumber": 41,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "RainbowRegrow",
+          "count": 36,
+          "start": 0,
+          "duration": 30.09000015258789
+        },
+        {
+          "bloon": "RainbowCamo",
+          "count": 30,
+          "start": 39.720001220703125,
+          "duration": 30.09000015258789
+        }
+      ],
+      "roundNumber": 42,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Rainbow",
+          "count": 76,
+          "start": 0,
+          "duration": 39.16999816894531
+        },
+        {
+          "bloon": "Ceramic",
+          "count": 53,
+          "start": 27.09000015258789,
+          "duration": 43.52000045776367
+        }
+      ],
+      "roundNumber": 43,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Zebra",
+          "count": 30,
+          "start": 0,
+          "duration": 30.139999389648438
+        },
+        {
+          "bloon": "Zebra",
+          "count": 30,
+          "start": 29.889999389648438,
+          "duration": 21.100000381469727
+        },
+        {
+          "bloon": "Zebra",
+          "count": 30,
+          "start": 50.72999954223633,
+          "duration": 12.050000190734863
+        },
+        {
+          "bloon": "Zebra",
+          "count": 30,
+          "start": 62.529998779296875,
+          "duration": 6.03000020980835
+        },
+        {
+          "bloon": "Zebra",
+          "count": 30,
+          "start": 68.30999755859375,
+          "duration": 3.009999990463257
+        }
+      ],
+      "roundNumber": 44,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Rainbow",
+          "count": 33,
+          "start": 0,
+          "duration": 18.600000381469727
+        },
+        {
+          "bloon": "Pink",
+          "count": 244,
+          "start": 24.540000915527344,
+          "duration": 47.5099983215332
+        },
+        {
+          "bloon": "LeadFortified",
+          "count": 5,
+          "start": 68.69000244140625,
+          "duration": 3.390000104904175
+        },
+        {
+          "bloon": "PurpleCamo",
+          "count": 13,
+          "start": 19.479999542236328,
+          "duration": 4.070000171661377
+        }
+      ],
+      "roundNumber": 45,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "CeramicFortified",
+          "count": 62,
+          "start": 0,
+          "duration": 72.81999969482422
+        }
+      ],
+      "roundNumber": 46,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Ceramic",
+          "count": 35,
+          "start": 0,
+          "duration": 18.739999771118164
+        },
+        {
+          "bloon": "PinkCamo",
+          "count": 208,
+          "start": 19.399999618530273,
+          "duration": 54.150001525878906
+        }
+      ],
+      "roundNumber": 47,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "PinkRegrow",
+          "count": 53,
+          "start": 0,
+          "duration": 20
+        },
+        {
+          "bloon": "Rainbow",
+          "count": 53,
+          "start": 40.709999084472656,
+          "duration": 26.65999984741211
+        },
+        {
+          "bloon": "CeramicFortified",
+          "count": 4,
+          "start": 68.94999694824219,
+          "duration": 5.329999923706055
+        },
+        {
+          "bloon": "PurpleRegrowCamo",
+          "count": 40,
+          "start": 20.3799991607666,
+          "duration": 20
+        }
+      ],
+      "roundNumber": 48,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Rainbow",
+          "count": 15,
+          "start": 6,
+          "duration": 7.70835018157959
+        },
+        {
+          "bloon": "Rainbow",
+          "count": 15,
+          "start": 60.150001525878906,
+          "duration": 7.70835018157959
+        },
+        {
+          "bloon": "RainbowRegrow",
+          "count": 15,
+          "start": 62.06999969482422,
+          "duration": 7.70835018157959
+        },
+        {
+          "bloon": "Ceramic",
+          "count": 27,
+          "start": 23.25,
+          "duration": 9.805500030517578
+        },
+        {
+          "bloon": "Zebra",
+          "count": 30,
+          "start": 43.912498474121094,
+          "duration": 5.268750190734863
+        },
+        {
+          "bloon": "Green",
+          "count": 514,
+          "start": 0,
+          "duration": 75
+        }
+      ],
+      "roundNumber": 49,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Moab",
+          "count": 4,
+          "start": 0,
+          "duration": 4
+        },
+        {
+          "bloon": "Moab",
+          "count": 4,
+          "start": 74.3785629272461,
+          "duration": 4
+        },
+        {
+          "bloon": "LeadFortified",
+          "count": 21,
+          "start": 8.134644508361816,
+          "duration": 10.625547409057617
+        },
+        {
+          "bloon": "Red",
+          "count": 53,
+          "start": 26.283409118652344,
+          "duration": 3.575521945953369
+        },
+        {
+          "bloon": "Ceramic",
+          "count": 53,
+          "start": 44.02012252807617,
+          "duration": 28.840770721435547
+        }
+      ],
+      "roundNumber": 50,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "CeramicCamo",
+          "count": 47,
+          "start": 0,
+          "duration": 56.97834014892578
+        },
+        {
+          "bloon": "RainbowRegrow",
+          "count": 31,
+          "start": 60.143802642822266,
+          "duration": 16.267284393310547
+        }
+      ],
+      "roundNumber": 51,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Rainbow",
+          "count": 93,
+          "start": 0,
+          "duration": 51.39731216430664
+        },
+        {
+          "bloon": "Moab",
+          "count": 4,
+          "start": 53.53852844238281,
+          "duration": 3.7505362033843994
+        },
+        {
+          "bloon": "Moab",
+          "count": 4,
+          "start": 66.38824462890625,
+          "duration": 3.7505362033843994
+        },
+        {
+          "bloon": "Ceramic",
+          "count": 18,
+          "start": 55.680423736572266,
+          "duration": 8.56772518157959
+        },
+        {
+          "bloon": "Ceramic",
+          "count": 19,
+          "start": 68.52980041503906,
+          "duration": 8.56772518157959
+        }
+      ],
+      "roundNumber": 52,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "PinkCamo",
+          "count": 177,
+          "start": 0,
+          "duration": 77.80110168457031
+        },
+        {
+          "bloon": "Moab",
+          "count": 3,
+          "start": 43.590843200683594,
+          "duration": 2.222888469696045
+        },
+        {
+          "bloon": "Moab",
+          "count": 3,
+          "start": 60.17359161376953,
+          "duration": 2.222888469696045
+        },
+        {
+          "bloon": "Moab",
+          "count": 3,
+          "start": 69.0873794555664,
+          "duration": 2.222888469696045
+        }
+      ],
+      "roundNumber": 53,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Ceramic",
+          "count": 141,
+          "start": 0,
+          "duration": 78.5
+        },
+        {
+          "bloon": "Moab",
+          "count": 4,
+          "start": 25.190000534057617,
+          "duration": 4.039999961853027
+        },
+        {
+          "bloon": "Moab",
+          "count": 4,
+          "start": 48.4900016784668,
+          "duration": 4.039999961853027
+        }
+      ],
+      "roundNumber": 54,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Moab",
+          "count": 3,
+          "start": 77,
+          "duration": 2.0999999046325684
+        },
+        {
+          "bloon": "Ceramic",
+          "count": 27,
+          "start": 0,
+          "duration": 3.1500000953674316
+        },
+        {
+          "bloon": "Ceramic",
+          "count": 27,
+          "start": 21.18000030517578,
+          "duration": 3.9800000190734863
+        },
+        {
+          "bloon": "Ceramic",
+          "count": 27,
+          "start": 38.97999954223633,
+          "duration": 3.9800000190734863
+        },
+        {
+          "bloon": "Ceramic",
+          "count": 40,
+          "start": 59.93000030517578,
+          "duration": 2.4600000381469727
+        }
+      ],
+      "roundNumber": 55,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "RainbowCamo",
+          "count": 203,
+          "start": 0,
+          "duration": 61.099998474121094
+        },
+        {
+          "bloon": "Moab",
+          "count": 5,
+          "start": 74.4000015258789,
+          "duration": 5.429999828338623
+        }
+      ],
+      "roundNumber": 56,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Moab",
+          "count": 6,
+          "start": 0,
+          "duration": 1.75
+        },
+        {
+          "bloon": "Moab",
+          "count": 6,
+          "start": 38.54999923706055,
+          "duration": 1.75
+        },
+        {
+          "bloon": "Rainbow",
+          "count": 122,
+          "start": 2.9800000190734863,
+          "duration": 77.5199966430664
+        }
+      ],
+      "roundNumber": 57,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Moab",
+          "count": 10,
+          "start": 0,
+          "duration": 81.16000366210938
+        },
+        {
+          "bloon": "Ceramic",
+          "count": 27,
+          "start": 0,
+          "duration": 40.79999923706055
+        },
+        {
+          "bloon": "CeramicFortified",
+          "count": 18,
+          "start": 43.41999816894531,
+          "duration": 36.90999984741211
+        }
+      ],
+      "roundNumber": 58,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Ceramic",
+          "count": 62,
+          "start": 0,
+          "duration": 31.270000457763672
+        },
+        {
+          "bloon": "LeadCamo",
+          "count": 156,
+          "start": 31.790000915527344,
+          "duration": 23.299999237060547
+        },
+        {
+          "bloon": "CeramicRegrow",
+          "count": 31,
+          "start": 56.790000915527344,
+          "duration": 25.020000457763672
+        }
+      ],
+      "roundNumber": 59,
+      "addToRound": false
+    },
+    {
+      "bloonGroups": [
+        {
+          "bloon": "Bfb",
+          "count": 22,
+          "start": 0,
+          "duration": 82.45966339111328
+        }
+      ],
+      "roundNumber": 60,
+      "addToRound": false
+    }
+  ],
+  "scale": 1
+}
