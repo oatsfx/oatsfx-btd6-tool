@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { HeroCostsData, TowerCostsData } from "types/costs";
+import { HeroCostsData } from "types/costs";
 
-export const useTowerCostData = () => {
+export const useHeroCostData = () => {
   const url =
-    "https://raw.githubusercontent.com/hemisemidemipresent/cyberquincy/master/jsons/costs.json";
-  const [data, setData] = useState<TowerCostsData>({} as TowerCostsData);
+    "https://raw.githubusercontent.com/hemisemidemipresent/cyberquincy/master/jsons/heroes.json";
+  const [data, setData] = useState<HeroCostsData>({} as HeroCostsData);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,7 +18,12 @@ export const useTowerCostData = () => {
         Object.entries(jsonData).forEach((obj) => {
           jsonData[
             obj[0]
-              .replace("druid_monkey", "Druid")
+              .replace("brickell", "AdmiralBrickell")
+              .replace("churchill", "CaptainChurchill")
+              .replace("gwen", "Gwendolin")
+              .replace("jones", "StrikerJones")
+              .replace("obyn", "ObynGreenfoot")
+              .replace("pat", "PatFusty")
               .replace(/(_\w)/g, (match) => match[1].toUpperCase()) // Capitalize letters after underscores
               .replace(/^./, (match) => match.toUpperCase())
           ] = jsonData[obj[0]];

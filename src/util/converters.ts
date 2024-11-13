@@ -7,8 +7,9 @@ import {
   raceMedalImages,
 } from "./formatters";
 import { EventType } from "types/events";
+import ctIds from "configs/ctIds.config";
 
-export type TowerType = "primary" | "military" | "magic" | "support";
+export type TowerType = "primary" | "military" | "magic" | "support" | "hero";
 
 export const roundEven5 = (num: number) => {
   if (num % 5 === 2.5) {
@@ -64,17 +65,8 @@ export const formatGameEntityName = (entity: string): string => {
   const wordsToExclude = ["or", "the", "a", "of"];
 
   return entity
-    .split("_")
-    .map((word) => {
-      if (
-        wordsToExclude.includes(word) &&
-        entity.split("_").indexOf(word) !== 0
-      ) {
-        return word;
-      }
-      return word.charAt(0).toUpperCase() + word.slice(1);
-    })
-    .join(" ");
+    .replace(/([a-z])([A-Z])/g, "$1 $2") // Add space before capitals
+    .replace(/\b(Or|The|A|Of)\b/g, (match) => match.toLowerCase()); // Lowercase specific words
 };
 
 export const formatToUpperCase = (entity: string): string => {
@@ -242,32 +234,64 @@ export const appendOrdinalSuffix = (number: number): string => {
   return number + "th";
 };
 
+export const convertGameTypeToString = (gameType: number): string => {
+  switch (gameType) {
+    case 2:
+      return "Race";
+    case 4:
+      return "Boss";
+    case 8:
+      return "LeastCash";
+    case 9:
+      return "LeastTiers";
+    default:
+      return "";
+  }
+};
+
 export const towerTypes: { [key in Tower]: TowerType } = {
-  alchemist: "magic",
-  banana_farm: "support",
-  beast_handler: "support",
-  boomerang_monkey: "primary",
-  bomb_shooter: "primary",
-  dart_monkey: "primary",
-  dartling_gunner: "military",
-  druid: "magic",
-  druid_monkey: "magic",
-  engineer_monkey: "support",
-  glue_gunner: "primary",
-  heli_pilot: "military",
-  ice_monkey: "primary",
-  mermonkey: "magic",
-  monkey_ace: "military",
-  monkey_buccaneer: "military",
-  monkey_sub: "military",
-  monkey_village: "support",
-  mortar_monkey: "military",
-  ninja_monkey: "magic",
-  sniper_monkey: "military",
-  spike_factory: "support",
-  super_monkey: "magic",
-  tack_shooter: "primary",
-  wizard_monkey: "magic",
+  Alchemist: "magic",
+  BananaFarm: "support",
+  BeastHandler: "support",
+  BoomerangMonkey: "primary",
+  BombShooter: "primary",
+  DartMonkey: "primary",
+  DartlingGunner: "military",
+  Druid: "magic",
+  EngineerMonkey: "support",
+  GlueGunner: "primary",
+  HeliPilot: "military",
+  IceMonkey: "primary",
+  Mermonkey: "magic",
+  MonkeyAce: "military",
+  MonkeyBuccaneer: "military",
+  MonkeySub: "military",
+  MonkeyVillage: "support",
+  MortarMonkey: "military",
+  NinjaMonkey: "magic",
+  SniperMonkey: "military",
+  SpikeFactory: "support",
+  SuperMonkey: "magic",
+  TackShooter: "primary",
+  WizardMonkey: "magic",
+  // Heroes
+  AdmiralBrickell: "hero",
+  Adora: "hero",
+  Benjamin: "hero",
+  CaptainChurchill: "hero",
+  Corvus: "hero",
+  Etienne: "hero",
+  Ezili: "hero",
+  Geraldo: "hero",
+  Gwendolin: "hero",
+  ObynGreenfoot: "hero",
+  PatFusty: "hero",
+  Psi: "hero",
+  Quincy: "hero",
+  Rosalia: "hero",
+  Sauda: "hero",
+  StrikerJones: "hero",
+  ChosenPrimaryHero: "hero",
 };
 
 export const prettyEventNames: { [key in EventType]: string } = {

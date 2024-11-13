@@ -1,6 +1,8 @@
-import { Tower } from "./ct";
+import { Difficulty, Tower } from "./ct";
 
 export type TowerCostsData = { [key in Tower]: TowerCost };
+
+export type HeroCostsData = { [key in Tower]: HeroCost };
 
 export type TowerCost = {
   cost: number;
@@ -11,10 +13,17 @@ export type TowerCost = {
   };
 };
 
+export type HeroCost = {
+  cost: number;
+  levelModifier: number;
+};
+
 export type TowerPath = {
   name: Tower;
   path: string;
   cost: number;
+  boxOfMonkey?: boolean;
+  isHero?: boolean;
 };
 
 export const emptyCost = {
@@ -26,9 +35,9 @@ export const emptyCost = {
   },
 };
 
-export const difficultyMultiplers = {
-  easy: 0.85,
-  medium: 1,
-  hard: 1.08,
-  impoppable: 1.2,
+export const difficultyMultiplers: Record<Difficulty, number> = {
+  Easy: 0.85,
+  Medium: 1,
+  Hard: 1.08,
+  // Impoppable: 1.2,
 };

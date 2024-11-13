@@ -4,23 +4,26 @@ import { towerImages } from "util/formatters";
 
 const SolutionRow = ({ solution }: { solution: TowerPath[] }) => {
   return (
-    <div className="indicator gap-3 justify-center w-2/3 border-b border-white/25 py-4">
+    <div className="indicator gap-3 items-center px-12 justify-center border-b border-white/25 py-4">
       {solution
         .sort((a, b) => b.cost - a.cost)
-        .map((tower) => (
+        .map((tower, i) => (
           <TowerDisplay
-            name={`${tower.name}: $${tower.cost}`}
+            name={`${tower.name}: $${tower.cost.toLocaleString()}${
+              tower.boxOfMonkey ? "*" : ""
+            }`}
             image={towerImages[tower.name as keyof typeof towerImages]}
             indicator={tower.path}
-            key={`${tower.path} ${tower.name}`}
+            boxOfMonkey={tower.boxOfMonkey}
+            key={i}
           />
         ))}
-      {/* <p>
-        = $
+      {/* <span className="indicator indicator-item indicator-bottom indicator-center font-light text-sm">
+        $
         {solution
           .reduce((total, tower) => total + tower.cost, 0)
           .toLocaleString()}
-      </p> */}
+      </span> */}
     </div>
   );
 };

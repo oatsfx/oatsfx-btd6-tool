@@ -1,14 +1,17 @@
-import { costInfluencingRelics } from "configs/relics.config";
-import React, { useEffect, useState } from "react";
+import costInfluencingRelics from "configs/relics.config";
+import { useCtEventRelics } from "hooks/useCtEventRelics";
+import { useEffect, useState } from "react";
 import { CTData, Relic } from "types/ct";
 
 const RelicList = ({
   data,
+  eventRelics,
   loading,
   relics,
   handleRelicFilterClick,
 }: {
   data: CTData;
+  eventRelics: Relic[];
   loading: boolean;
   relics: Relic[];
   handleRelicFilterClick: (relic: Relic) => void;
@@ -21,21 +24,18 @@ const RelicList = ({
 
   useEffect(() => {
     let relics: string[] = [];
-
-    Object.entries(data.tiles).map((tile) => {
-      if (tile[1].relic) {
-        relics.push(tile[1].relic);
+    Object.entries(data).map((tile) => {
+      if (tile[1].RelicType) {
+        relics.push(tile[1].RelicType);
       }
     });
 
-    setRelicList(relics);
-  }, [data]);
+    setRelicList(relics.concat(eventRelics));
+  }, [data, eventRelics]);
 
   return (
-    <div className="w-64">
-      <p className="text-lg font-medium text-center">
-        What Relics did the team have?
-      </p>
+    <div className="w-2/3">
+      <p className="text-lg font-medium text-center">Select some Relics</p>
       <div className="w-full">
         {!loading ? (
           costInfluencingRelics.map((relic) => (

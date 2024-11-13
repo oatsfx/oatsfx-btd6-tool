@@ -21,7 +21,7 @@ const TileSelector = ({
   relics: Relic[];
   changeTile: (tile: string) => void;
 }) => {
-  const [tileFilter, setTileFilter] = useState<TileType | "all">("all");
+  const [tileFilter, setTileFilter] = useState<TileType | "All">("All");
   const [filteredTileCodes, setFilteredTileCodes] = useState<{
     [key: string]: Tile;
   }>({});
@@ -36,21 +36,21 @@ const TileSelector = ({
   };
 
   const handleRelicSelection = (e: any) => {
-    setTileFilter("relic");
+    setTileFilter("Relic");
     changeTile(e.target.id);
     (document.getElementById("tile-select") as HTMLSelectElement).value =
       e.target.id;
   };
 
   useEffect(() => {
-    const filtered = Object.keys(data.tiles)
+    const filtered = Object.keys(data)
       .sort()
       .reduce((filtered: { [key: string]: Tile }, key) => {
         if (
-          data.tiles[key].game_type === "least_cash" &&
-          (tileFilter === "all" || data.tiles[key].tile_type === tileFilter)
+          data[key].GameData.subGameType === 8 &&
+          (tileFilter === "All" || data[key].TileType === tileFilter)
         ) {
-          filtered[key] = data.tiles[key];
+          filtered[key] = data[key];
         }
         return filtered;
       }, {});
@@ -62,11 +62,9 @@ const TileSelector = ({
   }, [tileFilter, data]);
 
   return (
-    <div className="w-64">
+    <div className="w-full">
       <div className="w-full justify-center">
-        <p className="text-lg font-medium text-center">
-          What tile was this scored on?
-        </p>
+        <p className="text-lg font-medium text-center">Select a Tile</p>
         {!loading ? (
           <>
             <div className="flex gap-4 py-1 justify-center">
@@ -74,9 +72,9 @@ const TileSelector = ({
                 <input
                   type="radio"
                   name="radio-1"
-                  value="banner"
+                  value="Banner"
                   className="radio"
-                  checked={tileFilter === "banner"}
+                  checked={tileFilter === "Banner"}
                   onChange={handleFilter}
                 />
                 <img className="w-[28px] py-2" src={bannerImage} />
@@ -85,9 +83,9 @@ const TileSelector = ({
                 <input
                   type="radio"
                   name="radio-1"
-                  value="relic"
+                  value="Relic"
                   className="radio"
-                  checked={tileFilter === "relic"}
+                  checked={tileFilter === "Relic"}
                   onChange={handleFilter}
                 />
                 <img className="w-[28px] py-2" src={relicImage} />
@@ -96,9 +94,12 @@ const TileSelector = ({
                 <input
                   type="radio"
                   name="radio-1"
-                  value="regular"
+                  value="Regular"
                   className="radio"
-                  checked={tileFilter === "regular"}
+                  checked={
+                    tileFilter === "Regular" ||
+                    tileFilter === "TeamFirstCapture"
+                  }
                   onChange={handleFilter}
                 />
                 <img className="w-[28px] py-2" src={blankImage} />
@@ -107,15 +108,15 @@ const TileSelector = ({
                 <input
                   type="radio"
                   name="radio-1"
-                  value="all"
+                  value="All"
                   className="radio"
-                  checked={tileFilter === "all"}
+                  checked={tileFilter === "All"}
                   onChange={handleFilter}
                 />
                 <p className="text-sm py-3">All</p>
               </label>
             </div>
-            <div className="flex gap-6">
+            <div className="flex items-center justify-center gap-6">
               <select
                 id="tile-select"
                 className="select select-bordered w-full max-w-xs"
@@ -131,21 +132,21 @@ const TileSelector = ({
               </select>
               <details className="dropdown dropdown-right dropdown-center">
                 <summary className="btn w-24">Quick Relic</summary>
-                <ul className="p-2 shadow-xl menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-                  {Object.entries(data.tiles).map((tile) =>
-                    tile[1].tile_type === "relic" &&
-                    tile[1].game_type === "least_cash" ? (
-                      <li key={tile[1].relic as string}>
+                <ul className="p-2 shadow-xl menu dropdown-content z-[1] bg-base-100 rounded-box w-52 outline outline-white/25 outline-1">
+                  {Object.entries(data).map((tile) =>
+                    tile[1].TileType === "Relic" &&
+                    tile[1].GameData.subGameType === 8 ? (
+                      <li key={tile[1].RelicType as string}>
                         <a id={tile[0]} onClick={handleRelicSelection}>
                           <img
                             className="w-[20px]"
                             src={
                               relicImages[
-                                tile[1].relic as keyof typeof relicImages
+                                tile[1].RelicType as keyof typeof relicImages
                               ]
                             }
                           />
-                          {formatGameEntityName(tile[1].relic as string)}
+                          {formatGameEntityName(tile[1].RelicType as string)}
                         </a>
                       </li>
                     ) : null
@@ -154,10 +155,7 @@ const TileSelector = ({
               </details>
             </div>
             {selectedTile ? (
-              <TileDisplay
-                tileCode={selectedTile}
-                tile={data.tiles[selectedTile]}
-              />
+              <TileDisplay tileCode={selectedTile} tile={data[selectedTile]} />
             ) : (
               <p className="text-center">No tile selected.</p>
             )}

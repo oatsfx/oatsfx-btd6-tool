@@ -13,7 +13,7 @@ const routes = [
     key: "lcc",
     name: "Least Cash",
     component: React.lazy(() => import("pages/LeastCashCalculator")),
-    visible: false,
+    visible: true,
   },
   {
     path: "/race-time-calculator",
