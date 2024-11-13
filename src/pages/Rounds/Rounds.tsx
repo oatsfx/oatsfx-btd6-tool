@@ -143,7 +143,7 @@ const Rounds: React.FC = () => {
               <div className="flex flex-col items-center">
                 <div className="flex w-full gap-4">
                   <div className="overflow-x-hidden w-full max-h-56 h-56 my-2 py-4 flex flex-col items-center bg-base-200">
-                    <p className="font-semibold">Must Include</p>
+                    <p className="font-semibold">Included Bloons</p>
                     <div className="flex w-full px-12 py-4 gap-2 flex-wrap items-center justify-center">
                       {selectedBloons.map((bloon) => (
                         <button
@@ -192,7 +192,7 @@ const Rounds: React.FC = () => {
                     </div>
                   </div>
                   <div className="overflow-x-hidden w-full max-h-56 h-56 my-2 py-4 flex flex-col items-center bg-base-200">
-                    <p className="font-semibold">Must Exclude</p>
+                    <p className="font-semibold">Excluded Bloons</p>
                     <div className="flex w-full px-12 py-4 gap-2 flex-wrap items-center justify-center">
                       {ignoredBloons.map((bloon) => (
                         <button

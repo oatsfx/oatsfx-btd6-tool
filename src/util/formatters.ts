@@ -95,6 +95,7 @@ import obynGreenfootImage from "images/heroes/obyn_greenfoot.webp";
 import patFustyImage from "images/heroes/pat_fusty.webp";
 import psiImage from "images/heroes/psi.webp";
 import quincyImage from "images/heroes/quincy.webp";
+import rosaliaImage from "images/heroes/rosalia.webp";
 import saudaImage from "images/heroes/sauda.webp";
 import strikerJonesImage from "images/heroes/striker_jones.webp";
 
@@ -222,256 +223,260 @@ import { Tower } from "types/ct";
 import { RaceMedal, RaceMedals } from "types/leaderboards";
 import { Bloon } from "types/roundSet";
 
-export const towerImages = {
-  alchemist: alchemistImage,
-  banana_farm: bananaFarmImage,
-  beast_handler: beastHandlerImage,
-  boomerang_monkey: boomerangMonkeyImage,
-  bomb_shooter: bombShooterImage,
-  dart_monkey: dartMonkeyImage,
-  dartling_gunner: dartlingGunnerImage,
-  druid: druidImage,
-  druid_monkey: druidImage,
-  engineer_monkey: engineerMonkeyImage,
-  glue_gunner: glueGunnerImage,
-  heli_pilot: heliPilotImage,
-  ice_monkey: iceMonkeyImage,
-  mermonkey: mermonkeyImage,
-  monkey_ace: monkeyAceImage,
-  monkey_buccaneer: monkeyBuccaneerImage,
-  monkey_sub: monkeySubImage,
-  monkey_village: monkeyVillageImage,
-  mortar_monkey: mortarMonkeyImage,
-  ninja_monkey: ninjaMonkeyImage,
-  sniper_monkey: sniperMonkeyImage,
-  spike_factory: spikeFactoryImage,
-  super_monkey: superMonkeyImage,
-  tack_shooter: tackShooterImage,
-  wizard_monkey: wizardMonkeyImage,
+export const towerImages: Record<Tower, string> = {
+  Alchemist: alchemistImage,
+  BananaFarm: bananaFarmImage,
+  BeastHandler: beastHandlerImage,
+  BoomerangMonkey: boomerangMonkeyImage,
+  BombShooter: bombShooterImage,
+  DartMonkey: dartMonkeyImage,
+  DartlingGunner: dartlingGunnerImage,
+  Druid: druidImage,
+  EngineerMonkey: engineerMonkeyImage,
+  GlueGunner: glueGunnerImage,
+  HeliPilot: heliPilotImage,
+  IceMonkey: iceMonkeyImage,
+  Mermonkey: mermonkeyImage,
+  MonkeyAce: monkeyAceImage,
+  MonkeyBuccaneer: monkeyBuccaneerImage,
+  MonkeySub: monkeySubImage,
+  MonkeyVillage: monkeyVillageImage,
+  MortarMonkey: mortarMonkeyImage,
+  NinjaMonkey: ninjaMonkeyImage,
+  SniperMonkey: sniperMonkeyImage,
+  SpikeFactory: spikeFactoryImage,
+  SuperMonkey: superMonkeyImage,
+  TackShooter: tackShooterImage,
+  WizardMonkey: wizardMonkeyImage,
+  // Heroes
+  AdmiralBrickell: admiralBrickellImage,
+  Adora: adoraImage,
+  Benjamin: benjaminImage,
+  CaptainChurchill: captainChurchillImage,
+  Corvus: corvusImage,
+  Etienne: etienneImage,
+  Ezili: eziliImage,
+  Geraldo: geraldoImage,
+  Gwendolin: gwendolinImage,
+  ObynGreenfoot: obynGreenfootImage,
+  PatFusty: patFustyImage,
+  Psi: psiImage,
+  Quincy: quincyImage,
+  Rosalia: rosaliaImage,
+  Sauda: saudaImage,
+  StrikerJones: strikerJonesImage,
+  ChosenPrimaryHero: "",
 };
 
 export const mapImages = {
-  adoras_temple:
+  AdorasTemple:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/adoras_temple.webp')]",
-  alpine_run:
+  AlpineRun:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/alpine_run.webp')]",
-  another_brick:
+  AncientPortal:
+    "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.5),rgba(48,47,61,1)),url('images/maps/ancient_portal.webp')]",
+  AnotherBrick:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/another_brick.webp')]",
-  balance:
+  Balance:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/balance.webp')]",
-  bazaar:
+  Bazaar:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/bazaar.webp')]",
-  blons:
+  Blons:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/blons.webp')]",
-  bloody_puddles:
+  BloodyPuddles:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/bloody_puddles.webp')]",
-  bloonarius_prime:
+  BloonariusPrime:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/bloonarius_prime.webp')]",
-  candy_falls:
+  CandyFalls:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/candy_falls.webp')]",
-  cargo:
+  Cargo:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/cargo.webp')]",
-  carved:
+  Carved:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/carved.webp')]",
-  chutes:
+  CastleRevenge:
+    "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/castle_revenge.webp')]",
+  Chutes:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/chutes.webp')]",
-  cornfield:
+  Cornfield:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/cornfield.webp')]",
-  covered_garden:
+  CoveredGarden:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/covered_garden.webp')]",
-  cracked:
+  Cracked:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/cracked.webp')]",
-  cubism:
+  Cubism:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/cubism.webp')]",
-  dark_castle:
+  DarkCastle:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/dark_castle.webp')]",
-  dark_dungeons:
+  DarkDungeons:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/dark_dungeons.webp')]",
-  dark_path:
+  DarkPath:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/dark_path.webp')]",
-  downstream:
+  Downstream:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/downstream.webp')]",
-  encrypted:
+  Encrypted:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/encrypted.webp')]",
-  end_of_the_road:
+  EndOfTheRoad:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/end_of_the_road.webp')]",
-  erosion:
+  Erosion:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/erosion.webp')]",
-  firing_range:
+  FiringRange:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/firing_range.webp')]",
-  flooded_valley:
+  FloodedValley:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/flooded_valley.webp')]",
-  four_circles:
+  FourCircles:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/four_circles.webp')]",
-  frozen_over:
+  FrozenOver:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/frozen_over.webp')]",
-  geared:
+  Geared:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/geared.webp')]",
-  haunted:
+  Haunted:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/haunted.webp')]",
-  hedge:
+  Hedge:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/hedge.webp')]",
-  high_finance:
+  HighFinance:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/high_finance.webp')]",
-  infernal:
+  Infernal:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/infernal.webp')]",
-  in_the_loop:
+  InTheLoop:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/in_the_loop.webp')]",
-  karts_n_darts:
+  KartsNDarts:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/karts_n_darts.webp')]",
-  logs: "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/logs.webp')]",
-  lotus_island:
+  Logs: "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/logs.webp')]",
+  LotusIsland:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.5),rgba(48,47,61,1)),url('images/maps/lotus_island.webp')]",
-  mesa: "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/mesa.webp')]",
-  middle_of_the_road:
+  LuminousCove:
+    "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.5),rgba(48,47,61,1)),url('images/maps/luminous_cove.webp')]",
+  Mesa: "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/mesa.webp')]",
+  MiddleOfTheRoad:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/middle_of_the_road.webp')]",
-  midnight_mansion:
+  MidnightMansion:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/midnight_mansion.webp')]",
-  monkey_meadow:
+  MonkeyMeadow:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/monkey_meadow.webp')]",
-  moon_landing:
+  MoonLanding:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/moon_landing.webp')]",
-  muddy_puddles:
+  MuddyPuddles:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/muddy_puddles.webp')]",
-  off_the_coast:
+  OffTheCoast:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/off_the_coast.webp')]",
-  one_two_tree:
+  OneTwoTree:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/one_two_tree.webp')]",
-  ouch: "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/ouch.webp')]",
-  park_path:
+  Ouch: "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/ouch.webp')]",
+  ParkPath:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/park_path.webp')]",
-  pats_pond:
+  PatsPond:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/pats_pond.webp')]",
-  peninsula:
+  Peninsula:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/peninsula.webp')]",
-  polyphemus:
+  Polyphemus:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/polyphemus.webp')]",
-  quad: "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/quad.webp')]",
-  quarry:
+  Quad: "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/quad.webp')]",
+  Quarry:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/quarry.webp')]",
-  quiet_street:
+  QuietStreet:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/quiet_street.webp')]",
-  rake: "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/rake.webp')]",
-  ravine:
+  Rake: "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/rake.webp')]",
+  Ravine:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/ravine.webp')]",
-  resort:
+  Resort:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/resort.webp')]",
-  sanctuary:
+  Sanctuary:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/sanctuary.webp')]",
-  scrapyard:
+  Scrapyard:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/scrapyard.webp')]",
-  skates:
+  Skates:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/skates.webp')]",
-  spice_islands:
+  SpiceIslands:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/spice_islands.webp')]",
-  spillway:
+  Spillway:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/spillway.webp')]",
-  spring_spring:
+  SpringSpring:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/spring_spring.webp')]",
-  streambed:
+  Streambed:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/streambed.webp')]",
-  sulfur_springs:
+  SulfurSprings:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/sulfur_springs.webp')]",
-  sunken_columns:
+  SunkenColumns:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/sunken_columns.webp')]",
-  the_cabin:
+  TheCabin:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/the_cabin.webp')]",
-  town_center:
+  Tinkerton:
+    "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/tinkerton.webp')]",
+  TownCenter:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/town_center.webp')]",
-  town_centre:
+  TownCentre:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/town_centre.webp')]",
-  tree_stump:
+  TreeStump:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/tree_stump.webp')]",
-  tutorial:
+  Tutorial:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/tutorial.webp')]",
-  underground:
+  Underground:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/underground.webp')]",
-  water_park:
+  WaterPark:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/water_park.webp')]",
-  winter_park:
+  WinterPark:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/winter_park.webp')]",
-  workshop:
+  Workshop:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/workshop.webp')]",
-  x_factor:
+  XFactor:
     "bg-[linear-gradient(to_bottom,rgba(48,47,61,0.4),rgba(48,47,61,1)),url('images/maps/x_factor.webp')]",
 };
 
 export const relicImages = {
-  abilitized: abilitizedImage,
-  air_and_sea: airAndSeaImage,
-  alchemist_touch: alchemistTouchImage,
-  bigger_bloon_sabotage: biggerBloonSabotageImage,
-  box_of_chocolates: boxOfChocolatesImage,
-  box_of_monkey: boxOfMonkeyImage,
-  broken_heart: brokenHeartImage,
-  camo_flogged: camoFloggedImage,
-  camo_trap: camoTrapImage,
-  deep_heat: deepHeatImage,
-  durable_shots: durableShotsImage,
-  el_dorado: elDoradoImage,
-  extra_empowered: extraEmpoweredImage,
-  flint_tips: flintTipsImage,
-  fortifried: fortifriedImage,
-  glue_trap: glueTrapImage,
-  going_the_distance: goingTheDistanceImage,
-  hard_baked: hardBakedImage,
-  heartless: heartlessImage,
-  hero_boost: heroBoostImage,
-  magic_monkeys: magicMonkeysImage,
-  mana_bulwark: manaBulwarkImage,
-  marching_boots: marchingBootsImage,
-  military_monkeys: militaryMonkeysImage,
-  moab_clash: moabClashImage,
-  moab_mine: moabMineImage,
-  monkey_boost: monkeyBoostImage,
-  monkey_tycoon: monkeyTycoonImage,
-  primary_primates: primaryPrimatesImage,
-  regeneration: regenerationImage,
-  restoration: restorationImage,
-  road_spikes: roadSpikesImage,
-  rounding_up: roundingUpImage,
-  royal_treatment: royalTreatmentImage,
-  sharpsplosion: sharpsplosionImage,
-  starting_stash: startingStashImage,
-  super_monkey_storm: superMonkeyStormImage,
-  support_simians: supportSimiansImage,
-  techbot: techbotImage,
-  thrive: thriveImage,
+  Abilitized: abilitizedImage,
+  AirAndSea: airAndSeaImage,
+  AlchemistTouch: alchemistTouchImage,
+  BiggerBloonSabotage: biggerBloonSabotageImage,
+  BoxOfChocolates: boxOfChocolatesImage,
+  BoxOfMonkey: boxOfMonkeyImage,
+  BrokenHeart: brokenHeartImage,
+  CamoFlogged: camoFloggedImage,
+  CamoTrap: camoTrapImage,
+  DeepHeat: deepHeatImage,
+  DurableShots: durableShotsImage,
+  ElDorado: elDoradoImage,
+  ExtraEmpowered: extraEmpoweredImage,
+  FlintTips: flintTipsImage,
+  Fortifried: fortifriedImage,
+  GlueTrap: glueTrapImage,
+  GoingTheDistance: goingTheDistanceImage,
+  HardBaked: hardBakedImage,
+  Heartless: heartlessImage,
+  HeroBoost: heroBoostImage,
+  MagicMonkeys: magicMonkeysImage,
+  ManaBulwark: manaBulwarkImage,
+  MarchingBoots: marchingBootsImage,
+  MilitaryMonkeys: militaryMonkeysImage,
+  MoabClash: moabClashImage,
+  MoabMine: moabMineImage,
+  MonkeyBoost: monkeyBoostImage,
+  MonkeyTycoon: monkeyTycoonImage,
+  PrimaryPrimates: primaryPrimatesImage,
+  Regeneration: regenerationImage,
+  Restoration: restorationImage,
+  RoadSpikes: roadSpikesImage,
+  RoundingUp: roundingUpImage,
+  RoyalTreatment: royalTreatmentImage,
+  Sharpsplosion: sharpsplosionImage,
+  StartingStash: startingStashImage,
+  SuperMonkeyStorm: superMonkeyStormImage,
+  SupportSimians: supportSimiansImage,
+  Techbot: techbotImage,
+  Thrive: thriveImage,
 };
 
 export const tileImages = {
-  banner: bannerImage,
-  relic: relicImage,
-  regular: blankImage,
+  Banner: bannerImage,
+  Relic: relicImage,
+  Regular: blankImage,
+  TeamFirstCapture: blankImage,
 };
 
 export const gameTypeImages = {
-  bloonarius: bloonariusImage,
-  dreadbloon: dreadbloonImage,
-  least_cash: leastCashImage,
-  least_tiers: leastTiersImage,
-  lych: lychImage,
-  phayze: phayzeImage,
-  race: raceImage,
-  vortex: vortexImage,
-};
-
-export const heroImages = {
-  admiral_brickell: admiralBrickellImage,
-  adora: adoraImage,
-  benjamin: benjaminImage,
-  captain_churchill: captainChurchillImage,
-  corvus: corvusImage,
-  etienne: etienneImage,
-  ezili: eziliImage,
-  geraldo: geraldoImage,
-  gwendolin: gwendolinImage,
-  obyn_greenfoot: obynGreenfootImage,
-  pat_fusty: patFustyImage,
-  psi: psiImage,
-  quincy: quincyImage,
-  sauda: saudaImage,
-  striker_jones: strikerJonesImage,
+  4: bloonariusImage,
+  8: leastCashImage,
+  9: leastTiersImage,
+  2: raceImage,
 };
 
 export const raceMedalImages = {

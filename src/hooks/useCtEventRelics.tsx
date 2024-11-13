@@ -1,13 +1,12 @@
-import { useEffect, useMemo, useState } from "react";
-import { CTData, Tile } from "types/ct";
+import { useMemo, useState } from "react";
+import { Relic } from "types/ct";
 
-export const useCtData = (eventId: number) => {
+export const useCtEventRelics = (eventId: number) => {
   const url =
     "https://storage.googleapis.com/btd6-ct-map/events/" +
     eventId +
-    "/tiles.json";
-
-  const [data, setData] = useState<CTData>({});
+    "/event_relics.json";
+  const [data, setData] = useState<Relic[]>([]);
   const [loading, setLoading] = useState(true);
 
   useMemo(() => {
@@ -17,7 +16,7 @@ export const useCtData = (eventId: number) => {
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
-        const jsonData: CTData = await response.json();
+        const jsonData: Relic[] = await response.json();
         setData(jsonData);
         console.log(jsonData);
       } catch (error) {
