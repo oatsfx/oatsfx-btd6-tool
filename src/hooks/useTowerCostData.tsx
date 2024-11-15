@@ -19,6 +19,7 @@ export const useTowerCostData = () => {
           jsonData[
             obj[0]
               .replace("druid_monkey", "Druid")
+              .replace("engineer", "EngineerMonkey")
               .replace(/(_\w)/g, (match) => match[1].toUpperCase()) // Capitalize letters after underscores
               .replace(/^./, (match) => match.toUpperCase())
           ] = jsonData[obj[0]];
