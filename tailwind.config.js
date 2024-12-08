@@ -17,6 +17,7 @@ module.exports = {
       fontFamily: {
         sans: ["Overused\\ Grotesk", "sans-serif"],
         display: ["Unbounded", "Overused\\ Grotesk"],
+        btd6: ["LuckiestGuy"],
       },
     },
   },

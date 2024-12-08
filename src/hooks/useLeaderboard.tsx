@@ -1,10 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { BossMode, EventType } from "types/events";
-import {
-  LeaderboardData,
-  LeaderboardEntry,
-  ProfileData,
-} from "types/leaderboards";
+import { LeaderboardData, LeaderboardEntry } from "types/leaderboards";
 import { Event } from "types/events";
 
 export const useLeaderboard = (
@@ -19,9 +15,6 @@ export const useLeaderboard = (
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [profileData, setProfileData] = useState<{
-    [key: string]: ProfileData;
-  }>({});
 
   useMemo(() => {
     const raceUrl = "https://data.ninjakiwi.com/btd6/races/";
@@ -170,27 +163,6 @@ export const useLeaderboard = (
           throw new Error("Unsuccessful: " + jsonData.error);
         }
 
-        const newProfiles: { [key: string]: ProfileData } = {};
-
-        // for (var entry of jsonData.body) {
-        //   console.log(entry);
-        //   try {
-        //     const response = await fetch(entry.profile);
-        //     if (!response.ok) {
-        //       throw new Error("Failed to fetch data");
-        //     }
-        //     const jsonData: LeaderboardData<ProfileData> =
-        //       await response.json();
-
-        //     newProfiles[entry.profile] = jsonData.body;
-        //     console.log(jsonData);
-        //   } catch (error) {
-        //     console.log(error);
-        //   }
-        // }
-
-        setProfileData(newProfiles);
-
         if (
           eventType === "Boss2" ||
           eventType === "Boss3" ||
@@ -259,5 +231,5 @@ export const useLeaderboard = (
     fetchData();
   }, [eventType, eventPos, page, bossMode]);
 
-  return { data, events, profileData, loading, error };
+  return { data, events, loading, error };
 };

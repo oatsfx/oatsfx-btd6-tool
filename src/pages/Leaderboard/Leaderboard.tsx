@@ -1,14 +1,12 @@
 import { LeaderboardCard } from "components/LeaderboardCard";
+import { Loading } from "components/Loading";
 import { SelectionRow } from "components/SelectionRow";
+import ctIds from "configs/ctIds.config";
 import { useLeaderboard } from "hooks/useLeaderboard";
 import { useEffect, useState } from "react";
 import { BossMode, EventType } from "types/events";
 import { Alert } from "types/util";
-import {
-  appendOrdinalSuffix,
-  placeToRaceMedal,
-  prettyEventNames,
-} from "util/converters";
+import { appendOrdinalSuffix, prettyEventNames } from "util/converters";
 
 const Leaderboard: React.FC = () => {
   const [alert, setAlert] = useState<Alert>({
@@ -21,11 +19,11 @@ const Leaderboard: React.FC = () => {
   const [page, setPage] = useState(1);
   const [bossMode, setBossMode] = useState<BossMode>("Standard");
   const [firstPlaceScore, setFirstPlaceScore] = useState<number>(-1);
+  const [showDelta, setShowDelta] = useState(false);
 
   const {
     data: leaderboardData,
     events: eventData,
-    profileData,
     loading,
     error,
   } = useLeaderboard(leaderboardType, eventPos, page, bossMode);
@@ -45,9 +43,15 @@ const Leaderboard: React.FC = () => {
   const getTotalScores = (): number => {
     switch (leaderboardType) {
       case "Boss":
-        return eventData[eventPos].totalScores_standard !== undefined
-          ? (eventData[eventPos].totalScores_standard as number)
-          : 0;
+        if (bossMode === "Standard") {
+          return eventData[eventPos].totalScores_standard !== undefined
+            ? (eventData[eventPos].totalScores_standard as number)
+            : 0;
+        } else {
+          return eventData[eventPos].totalScores_elite !== undefined
+            ? (eventData[eventPos].totalScores_elite as number)
+            : 0;
+        }
       case "CtPlayer":
         return eventData[eventPos].totalScores_player !== undefined
           ? (eventData[eventPos].totalScores_player as number)
@@ -64,7 +68,7 @@ const Leaderboard: React.FC = () => {
   };
 
   useEffect(() => {
-    if (!loading && page === 1) {
+    if (!loading && !error && page === 1) {
       setFirstPlaceScore(leaderboardData.body[0].score);
     }
   }, [loading]);
@@ -75,8 +79,8 @@ const Leaderboard: React.FC = () => {
         {prettyEventNames[leaderboardType]} Leaderboard
       </p>
 
-      <div className="flex gap-4">
-        <div className="flex flex-col gap-2 items-center">
+      <div className="flex gap-4 w-full items-center justify-center">
+        <div className="flex flex-col w-full gap-2 items-center">
           <SelectionRow
             selectionId={leaderboardType}
             selectionName={leaderboardType}
@@ -201,7 +205,7 @@ const Leaderboard: React.FC = () => {
                       setAlert({
                         alertType: "alert-warning",
                         message:
-                          "Co-op leaderboards aren't offically supported yet. Some values will be wrong, I can't fix that.",
+                          "Co-op leaderboards aren't offically supported by NinjaKiwi. Some values will be wrong, I can't fix that.",
                       });
                       setPage(1);
                     },
@@ -214,7 +218,7 @@ const Leaderboard: React.FC = () => {
                       setAlert({
                         alertType: "alert-warning",
                         message:
-                          "Co-op leaderboards aren't offically supported yet. Some values will be wrong, I can't fix that.",
+                          "Co-op leaderboards aren't offically supported by NinjaKiwi. Some values will be wrong, I can't fix that.",
                       });
                       setPage(1);
                     },
@@ -241,11 +245,11 @@ const Leaderboard: React.FC = () => {
         </div>
 
         <div className="divider divider-horizontal" />
-        {!loading ? (
-          <div className="flex items-center gap-4">
-            <p className="text-nowrap">
-              Select a {prettyEventNames[leaderboardType]} event:
-            </p>
+        <div className="flex items-center w-full gap-4">
+          <p className="text-nowrap">
+            Select a {prettyEventNames[leaderboardType]} event:
+          </p>
+          {!loading ? (
             <select
               id="tile-select"
               className="select select-bordered w-full max-w-xs"
@@ -256,20 +260,37 @@ const Leaderboard: React.FC = () => {
               value={
                 eventData[eventPos].name
                   ? eventData[eventPos].name
+                  : leaderboardType === "CtPlayer" ||
+                    leaderboardType === "CtTeam"
+                  ? `${
+                      ctIds.filter((x) => x.id === eventData[eventPos].id)[0]
+                        .number
+                    } (${
+                      ctIds.filter((x) => x.id === eventData[eventPos].id)[0].id
+                    })`
                   : eventData[eventPos].id
               }
             >
               {eventData.map((x, index) => (
-                <option key={index}>{x.name ? x.name : x.id}</option>
+                <option key={index}>
+                  {x.name
+                    ? x.name
+                    : leaderboardType === "CtPlayer" ||
+                      leaderboardType === "CtTeam"
+                    ? `${ctIds.filter((a) => a.id === x.id)[0].number} (${
+                        ctIds.filter((a) => a.id === x.id)[0].id
+                      })`
+                    : eventData[eventPos].id}
+                </option>
               ))}
             </select>
-          </div>
-        ) : (
-          <span className="loading loading-spinner loading-lg"></span>
-        )}
+          ) : (
+            <div className="skeleton h-12 w-full max-w-xs" />
+          )}
+        </div>
       </div>
 
-      {!loading ? (
+      {!error ? (
         <>
           <div className="join">
             <button
@@ -318,13 +339,27 @@ const Leaderboard: React.FC = () => {
               »
             </button>
           </div>
-
-          <p>
-            Showing players{" "}
-            {appendOrdinalSuffix((page - 1) * leaderboardData.body.length + 1)}-
-            {appendOrdinalSuffix(page * leaderboardData.body.length)} of{" "}
-            {getTotalScores().toLocaleString()} entries.
-          </p>
+          <label className="flex gap-4 cursor-pointer items-center">
+            <input
+              type="checkbox"
+              checked={showDelta}
+              className="checkbox"
+              onChange={() => setShowDelta((prev) => !prev)}
+            />
+            <span className="label-text">Show Delta</span>
+          </label>
+          {!loading ? (
+            <p>
+              Showing players{" "}
+              {appendOrdinalSuffix(
+                (page - 1) * leaderboardData.body.length + 1
+              )}
+              -{appendOrdinalSuffix(page * leaderboardData.body.length)} of{" "}
+              {getTotalScores().toLocaleString()} entries.
+            </p>
+          ) : (
+            <></>
+          )}
         </>
       ) : (
         <></>
@@ -358,26 +393,73 @@ const Leaderboard: React.FC = () => {
           {!loading ? (
             leaderboardData.body.map((entry, index) => (
               <LeaderboardCard
-                profileData={profileData[entry.profile]}
                 entry={entry}
                 index={index + (page - 1) * leaderboardData.body.length}
                 event={eventData[eventPos]}
                 eventType={leaderboardType}
                 delta={entry.score - firstPlaceScore}
+                showDelta={showDelta}
                 key={index}
                 bossMode={bossMode}
               />
             ))
           ) : (
-            <div className="flex flex-col gap-4 w-full py-2 items-center">
-              <div className="skeleton h-14 w-2/3" />
-              <div className="skeleton h-14 w-2/3" />
-              <div className="skeleton h-14 w-2/3" />
-              <div className="skeleton h-14 w-2/3" />
-              <div className="skeleton h-14 w-2/3" />
-            </div>
+            <Loading />
           )}
         </>
+      )}
+      {!error && !loading ? (
+        <>
+          <div className="join">
+            <button
+              className={
+                "join-item btn" + (!leaderboardData.prev ? " btn-disabled" : "")
+              }
+              onClick={() => setPage(1)}
+            >
+              «
+            </button>
+            <button
+              className={
+                "join-item btn" + (!leaderboardData.prev ? " btn-disabled" : "")
+              }
+              onClick={() => setPage((prev) => prev - 1)}
+            >
+              ‹
+            </button>
+            <label className="input join-item bg-base-200 hover:bg-base-300 flex items-center gap-2 z-50">
+              {/* <img src={leastCashImage} className="w-[28px]" /> */}
+              <input
+                className="font-medium text-lg max-w-40 text-center"
+                type="text"
+                inputMode="numeric"
+                placeholder="Score"
+                value={page}
+                onChange={handlePageInput}
+              />
+            </label>
+            <button
+              className={
+                "join-item btn" + (!leaderboardData.next ? " btn-disabled" : "")
+              }
+              onClick={() => setPage((prev) => prev + 1)}
+            >
+              ›
+            </button>
+            <button
+              className={
+                "join-item btn btn-disabled tooltip" +
+                (!leaderboardData.next ? " btn-disabled" : "")
+              }
+              onClick={() => setPage(25)}
+              data-tip="I don't know the max pages for this event."
+            >
+              »
+            </button>
+          </div>
+        </>
+      ) : (
+        <></>
       )}
     </div>
   );
