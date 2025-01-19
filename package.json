@@ -1,6 +1,6 @@
 {
-  "name": "btd6-least-cash-calc",
-  "version": "0.1.0",
+  "name": "oatsfx-btd6-tool",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",

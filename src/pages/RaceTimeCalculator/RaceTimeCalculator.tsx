@@ -1,3 +1,4 @@
+import { Loading } from "components/Loading";
 import { useLocalRoundData } from "hooks/useLocalRoundData";
 import { useEffect, useState } from "react";
 import {
@@ -86,7 +87,7 @@ const RaceTimeCalculator: React.FC = () => {
       </p>
 
       {roundLoading ? (
-        <span className="loading loading-spinner loading-lg"></span>
+        <Loading />
       ) : (
         <div className="flex flex-col w-1/2 items-center justify-center align-center gap-2">
           <select

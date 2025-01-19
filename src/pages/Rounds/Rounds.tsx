@@ -11,6 +11,7 @@ import {
 import { convertMsToTimeFormat } from "util/converters";
 import { bloonImage, bloonStyle } from "util/formatters";
 import { FaFilter } from "react-icons/fa";
+import { Loading } from "components/Loading";
 
 const Rounds: React.FC = () => {
   const [roundSetPos, setRoundSetPos] = useState(0);
@@ -82,7 +83,7 @@ const Rounds: React.FC = () => {
       </p>
 
       {roundLoading ? (
-        <span className="loading loading-spinner loading-lg"></span>
+        <Loading />
       ) : (
         <div className="flex flex-col w-5/6 items-center justify-center align-center gap-2">
           <div className="flex items-center justify-center gap-6 w-full">

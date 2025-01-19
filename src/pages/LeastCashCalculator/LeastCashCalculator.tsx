@@ -19,6 +19,7 @@ import { useLeaderboard } from "hooks/useLeaderboard";
 import ctIds from "configs/ctIds.config";
 import { useCtEventRelics } from "hooks/useCtEventRelics";
 import { useHeroCostData } from "hooks/useHeroCostData";
+import { Loading } from "components/Loading";
 
 const LeastCashCalculator: React.FC = () => {
   const [eventNum, setEventNum] = useState<number>(ctIds[0].number);
@@ -58,6 +59,7 @@ const LeastCashCalculator: React.FC = () => {
 
   const changeTile = (tile: string) => {
     setSelectedTile(tile);
+    console.log(tile);
     console.log(ctData[tile]);
     if (
       ctData[tile].GameData.dcModel.towers._items
@@ -1055,7 +1057,7 @@ const LeastCashCalculator: React.FC = () => {
           />
         </div>
       ) : (
-        <span className="loading loading-spinner loading-lg"></span>
+        <Loading />
       )}
       <div className="divider">
         <svg

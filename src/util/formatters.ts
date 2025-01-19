@@ -220,7 +220,7 @@ import zomgImage from "images/bloons/Zomg.webp";
 import zomgFortifiedImage from "images/bloons/ZomgFortified.webp";
 
 import { Tower } from "types/ct";
-import { RaceMedal, RaceMedals } from "types/leaderboards";
+import { PlayerMedal, PlayerEventMedals } from "types/leaderboards";
 import { Bloon } from "types/roundSet";
 
 export const towerImages: Record<Tower, string> = {

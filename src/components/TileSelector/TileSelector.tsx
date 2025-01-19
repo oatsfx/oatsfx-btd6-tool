@@ -35,9 +35,9 @@ const TileSelector = ({
     changeTile(tile);
   };
 
-  const handleRelicSelection = (e: any) => {
+  const handleRelicSelection = (e: any, tile: string) => {
     setTileFilter("Relic");
-    changeTile(e.target.id);
+    changeTile(tile);
     (document.getElementById("tile-select") as HTMLSelectElement).value =
       e.target.id;
   };
@@ -137,7 +137,12 @@ const TileSelector = ({
                     tile[1].TileType === "Relic" &&
                     tile[1].GameData.subGameType === 8 ? (
                       <li key={tile[1].RelicType as string}>
-                        <a id={tile[0]} onClick={handleRelicSelection}>
+                        <a
+                          id={tile[0]}
+                          onClick={(e) => {
+                            handleRelicSelection(e, tile[0]);
+                          }}
+                        >
                           <img
                             className="w-[20px]"
                             src={

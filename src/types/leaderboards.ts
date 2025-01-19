@@ -26,16 +26,29 @@ export type ScoreName =
   | "Tiers"
   | "Cash Spent";
 
-export type ProfileData = {
+export type PlayerProfileData = {
   displayName: string;
   rank: number;
   veteranRank: number;
   avatarURL: string;
   bannerURL: string;
-  _medalsRace: RaceMedals;
+  _medalsRace: PlayerEventMedals;
+  _medalsBoss: PlayerEventMedals;
+  _medalsBossElite: PlayerEventMedals;
+  _medalsCTGlobal: PlayerCtMedals;
 };
 
-export type RaceMedals = {
+export type GuildProfileData = {
+  name: string;
+  owner: string;
+  numMembers: number;
+  status: string;
+  bannerURL: string;
+  frameURL: string;
+  iconURL: string;
+};
+
+export type PlayerEventMedals = {
   BlackDiamond: number | null;
   RedDiamond: number | null;
   Diamond: number | null;
@@ -47,7 +60,16 @@ export type RaceMedals = {
   Bronze: number | null;
 };
 
-export type RaceMedal =
+export type PlayerCtMedals = {
+  Diamond: number | null;
+  GoldDiamond: number | null;
+  DoubleGold: number | null;
+  GoldSilver: number | null;
+  Silver: number | null;
+  Bronze: number | null;
+};
+
+export type PlayerMedal =
   | "black_diamond"
   | "red_diamond"
   | "diamond"
