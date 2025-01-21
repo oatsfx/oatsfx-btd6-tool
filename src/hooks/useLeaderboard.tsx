@@ -7,7 +7,8 @@ export const useLeaderboard = (
   eventType: EventType,
   eventPos: number,
   page: number,
-  bossMode?: BossMode
+  bossMode?: BossMode,
+  numOfPages: number = 1
 ) => {
   const [data, setData] = useState<LeaderboardData<LeaderboardEntry[]>>(
     {} as LeaderboardData<LeaderboardEntry[]>
@@ -26,36 +27,24 @@ export const useLeaderboard = (
     const fetchData = async () => {
       setLoading(true);
       setError(false);
+      console.log("fetching leaderboards");
       try {
-        let response = null;
+        let url = "";
         if (eventType === "Race") {
           const racesResponse = await fetch(raceUrl);
           const raceData = await racesResponse.json();
           setEvents(raceData.body);
 
-          response = await fetch(
-            raceData.body[eventPos].leaderboard + "?page=" + page,
-            headers
-          );
+          url = raceData.body[eventPos].leaderboard;
         } else if (eventType === "Boss") {
           const bossesResponse = await fetch(bossUrl);
           const bossData = await bossesResponse.json();
           setEvents(bossData.body);
 
           if (bossMode === "Elite") {
-            response = await fetch(
-              bossData.body[eventPos].leaderboard_elite_players_1 +
-                "?page=" +
-                page,
-              headers
-            );
+            url = bossData.body[eventPos].leaderboard_elite_players_1;
           } else {
-            response = await fetch(
-              bossData.body[eventPos].leaderboard_standard_players_1 +
-                "?page=" +
-                page,
-              headers
-            );
+            url = bossData.body[eventPos].leaderboard_standard_players_1;
           }
         } else if (eventType === "Boss2") {
           const bossesResponse = await fetch(bossUrl);
@@ -63,24 +52,15 @@ export const useLeaderboard = (
           setEvents(bossData.body);
 
           if (bossMode === "Elite") {
-            response = await fetch(
+            url =
               bossData.body[eventPos].leaderboard_elite_players_1.slice(0, -1) +
-                "2" +
-                "?page=" +
-                page,
-              headers
-            );
+              "2";
           } else {
-            response = await fetch(
+            url =
               bossData.body[eventPos].leaderboard_standard_players_1.slice(
                 0,
                 -1
-              ) +
-                "2" +
-                "?page=" +
-                page,
-              headers
-            );
+              ) + "2";
           }
         } else if (eventType === "Boss3") {
           const bossesResponse = await fetch(bossUrl);
@@ -88,24 +68,15 @@ export const useLeaderboard = (
           setEvents(bossData.body);
 
           if (bossMode === "Elite") {
-            response = await fetch(
+            url =
               bossData.body[eventPos].leaderboard_elite_players_1.slice(0, -1) +
-                "3" +
-                "?page=" +
-                page,
-              headers
-            );
+              "3";
           } else {
-            response = await fetch(
+            url =
               bossData.body[eventPos].leaderboard_standard_players_1.slice(
                 0,
                 -1
-              ) +
-                "3" +
-                "?page=" +
-                page,
-              headers
-            );
+              ) + "3";
           }
         } else if (eventType === "Boss4") {
           const bossesResponse = await fetch(bossUrl);
@@ -113,54 +84,55 @@ export const useLeaderboard = (
           setEvents(bossData.body);
 
           if (bossMode === "Elite") {
-            response = await fetch(
+            url =
               bossData.body[eventPos].leaderboard_elite_players_1.slice(0, -1) +
-                "4" +
-                "?page=" +
-                page,
-              headers
-            );
+              "4";
           } else {
-            response = await fetch(
+            url =
               bossData.body[eventPos].leaderboard_standard_players_1.slice(
                 0,
                 -1
-              ) +
-                "4" +
-                "?page=" +
-                page,
-              headers
-            );
+              ) + "4";
           }
         } else if (eventType === "CtTeam") {
           const ctResponse = await fetch(ctUrl);
           const ctData = await ctResponse.json();
           setEvents(ctData.body);
 
-          response = await fetch(
-            ctData.body[eventPos].leaderboard_team + "?page=" + page,
-            headers
-          );
+          url = ctData.body[eventPos].leaderboard_team;
         } else {
           const ctResponse = await fetch(ctUrl);
           const ctData = await ctResponse.json();
           setEvents(ctData.body);
           console.log(ctData);
 
-          response = await fetch(
-            ctData.body[eventPos].leaderboard_player + "?page=" + page,
-            headers
-          );
+          url = ctData.body[eventPos].leaderboard_player;
         }
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
+        const response = await fetch(url + "?page=" + page, headers);
+
         const jsonData: LeaderboardData<LeaderboardEntry[]> =
           await response.json();
 
         if (!jsonData.success) {
           throw new Error("Unsuccessful: " + jsonData.error);
+        }
+
+        // Add additional pages to the original JSON.
+        // Start at 1 since we already did the 1st page.
+        // This starts us at page 2, assuming page = 1.
+        console.log(numOfPages);
+        for (let i = 1; i < numOfPages; i++) {
+          const response = await fetch(url + "?page=" + (page + i), headers);
+
+          if (!response.ok) {
+            throw new Error("Failed to fetch data");
+          }
+
+          const newJsonData: LeaderboardData<LeaderboardEntry[]> =
+            await response.json();
+
+          jsonData.body = jsonData.body.concat(newJsonData.body);
         }
 
         if (

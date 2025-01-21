@@ -1,8 +1,9 @@
-import { Tower } from "types/ct";
+import { Relic, Tower } from "types/ct";
 import {
   bossEliteMedalImages,
   bossNormalMedalImages,
   ctPlayerMedalImages,
+  ctTeamLocalMedalImages,
   ctTeamMedalImages,
   raceMedalImages,
 } from "./formatters";
@@ -69,6 +70,10 @@ export const formatGameEntityName = (entity: string): string => {
     .replace(/\b(Or|The|A|Of)\b/g, (match) => match.toLowerCase()); // Lowercase specific words
 };
 
+export const formatGoldenAppleDiscordEmote = (relic: Relic): string => {
+  return `:z_${relic}:`;
+};
+
 export const formatToUpperCase = (entity: string): string => {
   return entity
     .split("_")
@@ -82,6 +87,10 @@ export const placeToRaceMedal = (
   place: number,
   totalEntries: number
 ): string => {
+  if (place < 1) {
+    return "";
+  }
+
   const percentile = (place / totalEntries) * 100;
 
   if (place === 1) {
@@ -111,6 +120,10 @@ export const placeToBossNormalMedal = (
   place: number,
   totalEntries: number
 ): string => {
+  if (place < 1) {
+    return "";
+  }
+
   const percentile = (place / totalEntries) * 100;
 
   if (place === 1) {
@@ -140,6 +153,10 @@ export const placeToBossEliteMedal = (
   place: number,
   totalEntries: number
 ): string => {
+  if (place < 1) {
+    return "";
+  }
+
   const percentile = (place / totalEntries) * 100;
 
   if (place === 1) {
@@ -169,6 +186,10 @@ export const placeToCtPlayerMedal = (
   place: number,
   totalEntries: number
 ): string => {
+  if (place < 1) {
+    return "";
+  }
+
   const percentile = (place / totalEntries) * 100;
 
   if (place <= 25) {
@@ -194,6 +215,10 @@ export const placeToCtTeamMedal = (
   place: number,
   totalEntries: number
 ): string => {
+  if (place < 1) {
+    return "";
+  }
+
   const percentile = (place / totalEntries) * 100;
 
   if (place === 1) {
@@ -216,6 +241,42 @@ export const placeToCtTeamMedal = (
     return ctTeamMedalImages.bronze;
   } else {
     return "";
+  }
+};
+
+export const placeToCtHistoryEmote = (
+  place: number,
+  totalEntries: number
+): string => {
+  const percentile = (place / totalEntries) * 100;
+
+  if (place === 1) {
+    return ":GT1:";
+  } else if (place === 2) {
+    return ":GT2:";
+  } else if (place === 3) {
+    return ":GT3:";
+  } else if (place <= 25) {
+    return ":GT25";
+  } else if (place <= 100) {
+    return ":GT100:";
+  } else {
+    return "";
+  }
+};
+
+export const placeToCtTeamLocalMedal = (place: number) => {
+  switch (place) {
+    case 1:
+      return ctTeamLocalMedalImages.diamond;
+    case 2:
+      return ctTeamLocalMedalImages.double_gold;
+    case 3:
+      return ctTeamLocalMedalImages.silver;
+    case 4:
+      return ctTeamLocalMedalImages.bronze;
+    default:
+      return "";
   }
 };
 
@@ -247,6 +308,26 @@ export const convertGameTypeToString = (gameType: number): string => {
     default:
       return "";
   }
+};
+
+export const formatEpochToReadableDate = (epochMs: number): string => {
+  const date = new Date(epochMs);
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+};
+
+export const formatDateToEventHighlightDate = (epochMs: number): string => {
+  const date = new Date(epochMs);
+  const day = date.getUTCDate();
+  const month = date.toLocaleString("en-US", {
+    month: "long",
+    timeZone: "UTC",
+  });
+  const year = date.getUTCFullYear();
+  return `${appendOrdinalSuffix(day)} ${month} ${year}`;
 };
 
 export const towerTypes: { [key in Tower]: TowerType } = {
