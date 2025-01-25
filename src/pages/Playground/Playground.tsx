@@ -77,6 +77,16 @@ const Playground: React.FC = () => {
     });
   };
 
+  const deleteLocalBattle = (index: number) => {
+    const newLocalBattles = [...localBattles];
+
+    newLocalBattles.splice(index, 1);
+    console.log(newLocalBattles);
+    console.log(localBattles);
+    setSelectedLocalBattle(-1);
+    setLocalBattles(newLocalBattles);
+  };
+
   const addLocalTeam = (battle: LocalBattle) => {
     if (battle.teams.length === 6) {
       return battle;
@@ -88,10 +98,12 @@ const Playground: React.FC = () => {
     return battle;
   };
 
-  const updateInProg = () => {
+  const updateLocalBattle = (index: number = -1) => {
     const localBattle: LocalBattle = { teams: [] };
-    console.log(inProgressLocalBattle.teams.length);
-    inProgressLocalBattle.teams.map((x, index) => {
+    const battle = index >= 0 ? localBattles[index] : inProgressLocalBattle;
+    console.log(battle);
+    const battles = [...localBattles];
+    battle.teams.map((x, index) => {
       const teamName = document.getElementById(
         `team-${index}-name`
       ) as HTMLSelectElement;
@@ -114,6 +126,10 @@ const Playground: React.FC = () => {
       });
     });
     console.log(localBattle);
+
+    battles[index] = localBattle;
+    setLocalBattles([...battles]);
+
     setInProgressLocalBattle(localBattle);
   };
 
@@ -213,7 +229,7 @@ const Playground: React.FC = () => {
                 <textarea
                   readOnly
                   className="textarea textarea-bordered w-full"
-                  defaultValue={`Event ${eventNum} (${formatDateToEventHighlightDate(
+                  value={`Event ${eventNum} (${formatDateToEventHighlightDate(
                     eventData[ctIds.length - eventNum].start
                   )}-${formatDateToEventHighlightDate(
                     eventData[ctIds.length - eventNum].end
@@ -231,7 +247,7 @@ const Playground: React.FC = () => {
                 <textarea
                   readOnly
                   className="textarea textarea-bordered w-full min-h-96"
-                  defaultValue={`## Event ID: \`${
+                  value={`## Event ID: \`${
                     eventData[ctIds.length - eventNum].id
                   }\`
 
@@ -323,7 +339,12 @@ const Playground: React.FC = () => {
                                 <p className="flex items-center gap-1">
                                   {appendOrdinalSuffix(teamIndex + 1)}
                                   {team.isAyo ? <FaEye /> : <></>}
-                                  GT{getMedalNum(team.globalPosition + 1)}{" "}
+                                  {team.globalPosition + 1 <= 100 &&
+                                  team.globalPosition > 0
+                                    ? `GT${getMedalNum(
+                                        team.globalPosition + 1
+                                      )}`
+                                    : ""}{" "}
                                   {team.name}
                                   {team.truce ? <FaHandshake /> : <></>}
                                 </p>
@@ -331,7 +352,10 @@ const Playground: React.FC = () => {
                           </div>
                         ))}
                       </div>
-                      {inProgressLocalBattle.teams.map((x, index) => (
+                      {(selectedLocalBattle >= 0
+                        ? localBattles[selectedLocalBattle]
+                        : inProgressLocalBattle
+                      ).teams.map((x, index) => (
                         <div className="w-2/3 flex flex-col items-center gap-1">
                           <label className="input input-bordered flex items-center gap-2 w-full">
                             <img
@@ -352,7 +376,7 @@ const Playground: React.FC = () => {
                               value={x.name}
                               id={"team-" + index + "-name"}
                               onChange={(x) => {
-                                updateInProg();
+                                updateLocalBattle(selectedLocalBattle);
                               }}
                             />
                           </label>
@@ -361,9 +385,10 @@ const Playground: React.FC = () => {
                               <input
                                 type="checkbox"
                                 className="checkbox"
+                                checked={x.truce}
                                 id={"team-" + index + "-truce"}
                                 onChange={(x) => {
-                                  updateInProg();
+                                  updateLocalBattle(selectedLocalBattle);
                                 }}
                               />
                               <span className="label-text">Truce</span>
@@ -373,8 +398,9 @@ const Playground: React.FC = () => {
                                 type="checkbox"
                                 className="checkbox"
                                 id={"team-" + index + "-ayo"}
+                                checked={x.isAyo}
                                 onChange={(x) => {
-                                  updateInProg();
+                                  updateLocalBattle(selectedLocalBattle);
                                 }}
                               />
                               <span className="label-text">👀</span>
@@ -382,14 +408,26 @@ const Playground: React.FC = () => {
                           </div>
                         </div>
                       ))}
-                      <button
-                        className="btn btn-success"
-                        onClick={() => {
-                          addLocalBattle();
-                        }}
-                      >
-                        Add Battle
-                      </button>
+                      <div className="flex gap-2">
+                        <button
+                          className="btn btn-success"
+                          disabled={selectedLocalBattle >= 0}
+                          onClick={() => {
+                            addLocalBattle();
+                          }}
+                        >
+                          Add Battle
+                        </button>
+                        <button
+                          className="btn btn-error"
+                          disabled={selectedLocalBattle < 0}
+                          onClick={() => {
+                            deleteLocalBattle(selectedLocalBattle);
+                          }}
+                        >
+                          Delete Battle
+                        </button>
+                      </div>
                     </div>
                     <div className="modal-action">
                       <form method="dialog">
@@ -410,7 +448,7 @@ const Playground: React.FC = () => {
                     <textarea
                       readOnly
                       className="textarea textarea-bordered w-full min-h-96"
-                      defaultValue={`# Event Leaderboard:
+                      value={`# Event Leaderboard:
                       ${leaderboardData.body
                         .slice(0, 3)
                         .map(
@@ -442,7 +480,8 @@ const Playground: React.FC = () => {
                                       ? `:LT${teamIndex + 1}:`
                                       : ":x:"
                                   }${team.isAyo ? ":eyes:" : ""}${
-                                    team.globalPosition + 1 <= 100
+                                    team.globalPosition + 1 <= 100 &&
+                                    team.globalPosition > 0
                                       ? `:GT${getMedalNum(
                                           team.globalPosition + 1
                                         )}:`
