@@ -152,6 +152,11 @@ import ctTeamTop10PerImage from "images/medals/ct/team/global/double_silver.webp
 import ctTeamTop25PerImage from "images/medals/ct/team/global/silver.webp";
 import ctTeamTop75PerImage from "images/medals/ct/team/global/bronze.webp";
 
+import ctTeamLocal1 from "images/medals/ct/team/local/diamond.webp";
+import ctTeamLocal2 from "images/medals/ct/team/local/double_gold.webp";
+import ctTeamLocal3 from "images/medals/ct/team/local/silver.webp";
+import ctTeamLocal4 from "images/medals/ct/team/local/bronze.webp";
+
 import badImage from "images/bloons/Bad.webp";
 import badFortifiedImage from "images/bloons/BadFortified.webp";
 import bfbImage from "images/bloons/Bfb.webp";
@@ -547,6 +552,13 @@ export const ctTeamMedalImages = {
   double_silver: ctTeamTop10PerImage,
   silver: ctTeamTop25PerImage,
   bronze: ctTeamTop75PerImage,
+};
+
+export const ctTeamLocalMedalImages = {
+  diamond: ctTeamLocal1,
+  double_gold: ctTeamLocal2,
+  silver: ctTeamLocal3,
+  bronze: ctTeamLocal4,
 };
 
 export const bloonStyle: Record<Bloon, string> = {
