@@ -205,15 +205,17 @@ const Playground: React.FC = () => {
             }}
             value={eventNum}
           >
-            {ctIds.map((x) => (
-              <option
-                key={x.number}
-                value={x.number}
-                onClick={() => setEventNum(x.number)}
-              >
-                {x.number} ({x.id})
-              </option>
-            ))}
+            {ctIds
+              .filter((x) => eventData.some((e) => e.id === x.id))
+              .map((x) => (
+                <option
+                  key={x.number}
+                  value={x.number}
+                  onClick={() => setEventNum(x.number)}
+                >
+                  {x.number} ({x.id})
+                </option>
+              ))}
           </select>
         </div>
         <p>Click the text you want to copy.</p>
