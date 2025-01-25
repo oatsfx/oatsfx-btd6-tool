@@ -5,8 +5,10 @@ import { useCtData } from "hooks/useCtData";
 import { useCtEventRelics } from "hooks/useCtEventRelics";
 import { useLeaderboard } from "hooks/useLeaderboard";
 import { useEffect, useState } from "react";
+import { FaEye, FaHandshake } from "react-icons/fa";
 import { LocalBattle, LocalTeam } from "types/localBattle";
 import {
+  appendOrdinalSuffix,
   formatDateToEventHighlightDate,
   formatGameEntityName,
   formatGoldenAppleDiscordEmote,
@@ -41,6 +43,8 @@ const Playground: React.FC = () => {
       teams: Array.from({ length: 6 }, createDefaultTeam),
     });
 
+  const [selectedLocalBattle, setSelectedLocalBattle] = useState(-1);
+
   const [page, setPage] = useState(1);
 
   const {
@@ -56,10 +60,8 @@ const Playground: React.FC = () => {
 
   const addLocalBattle = () => {
     const newLocalBattles = [...localBattles];
-    const trimmedLocalBattle = inProgressLocalBattle;
-    trimmedLocalBattle.teams = trimmedLocalBattle.teams.filter((x) => x.name);
 
-    if (trimmedLocalBattle.teams.length <= 1) {
+    if (inProgressLocalBattle.teams.filter((x) => x.name).length <= 1) {
       return;
     }
 
@@ -115,6 +117,38 @@ const Playground: React.FC = () => {
     setInProgressLocalBattle(localBattle);
   };
 
+  const updateExistingBattle = (index: number) => {
+    const localBattle: LocalBattle = { teams: [] };
+    console.log(localBattles[index].teams.length);
+    console.log(localBattles);
+    localBattles[index].teams.map((x, index) => {
+      const teamName = document.getElementById(
+        `edit-team-${index}-name`
+      ) as HTMLSelectElement;
+      const ayo = document.getElementById(
+        `edit-team-${index}-ayo`
+      ) as HTMLInputElement;
+      const truce = document.getElementById(
+        `edit-team-${index}-truce`
+      ) as HTMLInputElement;
+
+      const globalPosition = leaderboardData.body.findIndex(
+        (team) => team.displayName === teamName.value.toUpperCase()
+      );
+
+      localBattle.teams.push({
+        name: teamName.value,
+        globalPosition: globalPosition,
+        truce: truce.checked,
+        isAyo: ayo.checked,
+      });
+    });
+    console.log(localBattle);
+    const newLocalBattles = [...localBattles];
+    newLocalBattles[index] = localBattle;
+    setLocalBattles(newLocalBattles);
+  };
+
   const getMedalNum = (pos: number): number => {
     if (pos >= 1 && pos <= 3) return pos;
     if (pos > 3 && pos <= 25) return 25;
@@ -144,7 +178,7 @@ const Playground: React.FC = () => {
         </p>
       </div>
       <div className="divider" />
-      <div className="flex flex-col items-center gap-4 py-2">
+      <div className="flex flex-col items-center gap-4 py-2 w-full">
         <div className="flex items-center gap-4">
           <p className="text-nowrap">Select a CT event:</p>
           <select
@@ -173,46 +207,38 @@ const Playground: React.FC = () => {
           <Loading />
         ) : (
           <>
-            <div
-              className="hover:cursor-pointer"
-              onClick={() => {
-                const stringToCopy =
-                  `Event ${eventNum} (${formatDateToEventHighlightDate(
+            <div className="w-3/4">
+              <label>
+                Forum Post Title:
+                <textarea
+                  readOnly
+                  className="textarea textarea-bordered w-full"
+                  defaultValue={`Event ${eventNum} (${formatDateToEventHighlightDate(
                     eventData[ctIds.length - eventNum].start
                   )}-${formatDateToEventHighlightDate(
                     eventData[ctIds.length - eventNum].end
                   )})`
                     .split("\n")
                     .map((line) => line.trim())
-                    .join("\n");
-                navigator.clipboard.writeText(stringToCopy);
-                console.log(`copied: ${stringToCopy}`);
-              }}
-            >
-              <p className="font-bold text-2xl">
-                Event {eventNum} (
-                {formatDateToEventHighlightDate(
-                  eventData[ctIds.length - eventNum].start
-                )}
-                -
-                {formatDateToEventHighlightDate(
-                  eventData[ctIds.length - eventNum].end
-                )}
-                )
-              </p>
+                    .join("\n")}
+                />
+              </label>
             </div>
             <div className="divider" />
-            <div
-              className="hover:cursor-pointer"
-              onClick={() => {
-                const stringToCopy = `## Event ID: \`${
-                  eventData[ctIds.length - eventNum].id
-                }\`
+            <div className="w-3/4">
+              <label>
+                Initial Event Highlight Message:
+                <textarea
+                  readOnly
+                  className="textarea textarea-bordered w-full min-h-96"
+                  defaultValue={`## Event ID: \`${
+                    eventData[ctIds.length - eventNum].id
+                  }\`
 
                 ## Event Timeline:
                 <t:${eventData[ctIds.length - eventNum].start / 1000}> - <t:${
-                  eventData[ctIds.length - eventNum].end / 1000
-                }>
+                    eventData[ctIds.length - eventNum].end / 1000
+                  }>
                 
                 ### Event Relics:
                 ${eventRelics
@@ -233,40 +259,11 @@ const Playground: React.FC = () => {
                       )} ${formatGoldenAppleDiscordEmote(x)}`
                   )
                   .join("\n")}`
-                  .split("\n")
-                  .map((line) => line.trim())
-                  .join("\n");
-                navigator.clipboard.writeText(stringToCopy.replace("\t", ""));
-                console.log(`copied: ${stringToCopy}`.replace("\t", ""));
-              }}
-            >
-              <p className="font-bold text-xl flex">
-                Event ID: {eventData[ctIds.length - eventNum].id}
-              </p>
-              <p className="font-bold text-xl">Event Timeline:</p>
-              <p className="">
-                {"<"}t:
-                {eventData[ctIds.length - eventNum].start / 1000}
-                {">"} - {"<"}t:
-                {eventData[ctIds.length - eventNum].end / 1000}
-                {">"}
-              </p>
-              <p className="font-bold text-xl">Event Relics:</p>
-              <ul className="list-disc">
-                {eventRelics.map((x) => (
-                  <li>
-                    {formatGameEntityName(x)} {formatGoldenAppleDiscordEmote(x)}
-                  </li>
-                ))}
-              </ul>
-              <p className="font-bold text-xl">Daily Relics:</p>
-              <ul className="list-disc">
-                {dailyRelics.map((x) => (
-                  <li>
-                    {formatGameEntityName(x)} {formatGoldenAppleDiscordEmote(x)}
-                  </li>
-                ))}
-              </ul>
+                    .split("\n")
+                    .map((line) => line.trim())
+                    .join("\n")}
+                />
+              </label>
             </div>
 
             <div className="divider" />
@@ -285,7 +282,7 @@ const Playground: React.FC = () => {
                     ).showModal()
                   }
                 >
-                  Add Local Battle
+                  Manage Local Battles
                 </button>
                 <dialog id="local-battle-modal" className="modal">
                   <div className="modal-box max-w-3xl">
@@ -300,7 +297,40 @@ const Playground: React.FC = () => {
                       case sensitive.
                     </p>
                     <div className="flex flex-col items-center gap-2">
-                      <p>{inProgressLocalBattle.teams.length}</p>
+                      <div className="flex gap-2">
+                        {localBattles.map((battle, index) => (
+                          <div
+                            className={
+                              "border rounded-lg p-4 hover:bg-black/25 hover:cursor-pointer" +
+                              (selectedLocalBattle === index
+                                ? " border-success"
+                                : " border-transparent")
+                            }
+                            onClick={() => {
+                              console.log(index);
+                              console.log(selectedLocalBattle);
+
+                              if (index === selectedLocalBattle) {
+                                setSelectedLocalBattle(-1);
+                              } else {
+                                setSelectedLocalBattle(index);
+                              }
+                            }}
+                          >
+                            {battle.teams
+                              .filter((x) => x.name)
+                              .map((team, teamIndex) => (
+                                <p className="flex items-center gap-1">
+                                  {appendOrdinalSuffix(teamIndex + 1)}
+                                  {team.isAyo ? <FaEye /> : <></>}
+                                  GT{getMedalNum(team.globalPosition + 1)}{" "}
+                                  {team.name}
+                                  {team.truce ? <FaHandshake /> : <></>}
+                                </p>
+                              ))}
+                          </div>
+                        ))}
+                      </div>
                       {inProgressLocalBattle.teams.map((x, index) => (
                         <div className="w-2/3 flex flex-col items-center gap-1">
                           <label className="input input-bordered flex items-center gap-2 w-full">
@@ -374,10 +404,13 @@ const Playground: React.FC = () => {
                     <button>close</button>
                   </form>
                 </dialog>
-                <div
-                  className="hover:cursor-pointer"
-                  onClick={() => {
-                    const stringToCopy = `# Event Leaderboard:
+                <div className="w-3/4">
+                  <label>
+                    Leaderboard, Battles, and Other Events:
+                    <textarea
+                      readOnly
+                      className="textarea textarea-bordered w-full min-h-96"
+                      defaultValue={`# Event Leaderboard:
                       ${leaderboardData.body
                         .slice(0, 3)
                         .map(
@@ -395,159 +428,39 @@ const Playground: React.FC = () => {
                                 : ""
                             }`
                         )
-                        .join("\n")}`
-                      .split("\n")
-                      .map((line) => line.trim())
-                      .join("\n");
-                    navigator.clipboard.writeText(
-                      stringToCopy.replace("\t", "")
-                    );
-                    console.log(`copied: ${stringToCopy}`.replace("\t", ""));
-                  }}
-                >
-                  <p className="font-bold text-xl">Event Leaderboard:</p>
-                  {leaderboardData.body.slice(0, 3).map((x, index) => (
-                    <p>
-                      {placeToCtHistoryEmote(
-                        index + 1,
-                        eventData[ctIds.length - eventNum].totalScores!
-                      )}{" "}
-                      <span className="font-bold">{x.displayName}</span> |
-                      :CTPoints: {x.score}{" "}
-                      {leaderboardData.body[0].score - x.score > 0
-                        ? `(:small_red_triangle_down: ${
-                            leaderboardData.body[0].score - x.score
-                          })`
-                        : ""}
-                    </p>
-                  ))}
-                  <p className="font-bold text-xl">Local Battles:</p>
-                  {localBattles.map((battle, index) => (
-                    <div>
-                      {battle.teams.map((team, teamIndex) => (
-                        <p>
-                          {teamIndex <= 3 ? `:LT${teamIndex + 1}:` : ":x:"}
-                          {team.isAyo ? ":eyes:" : ""}:GT
-                          {getMedalNum(team.globalPosition + 1)}: {team.name}
-                          {team.truce ? " :handshake:" : ""}
-                        </p>
-                      ))}
-                      <button
-                        className={"btn"}
-                        onClick={() =>
-                          (
-                            document.getElementById(
-                              "edit-local-battle-modal-" + index
-                            ) as HTMLFormElement
-                          ).showModal()
-                        }
-                      >
-                        Edit Local Battle
-                      </button>
-                      <dialog
-                        id={"edit-local-battle-modal-" + index}
-                        className="modal"
-                      >
-                        <div className="modal-box max-w-3xl">
-                          <h3 className="font-bold text-lg text-primary">
-                            Edit Local Battle
-                          </h3>
-                          <p>Edit a local battle that appeared this week.</p>
-                          <p className="py-4">
-                            This tool will attempt to find the team's name in
-                            the top 100 global leaderboard when you create the
-                            local battle. For it to do that, enter it as it
-                            appears in-game. Not case sensitive.
-                          </p>
-                          <div className="flex flex-col items-center gap-2">
-                            {battle.teams.map((x, index) => (
-                              <div className="w-2/3 flex flex-col items-center gap-1">
-                                <label className="input input-bordered flex items-center gap-2 w-full">
-                                  <img
-                                    src={placeToCtTeamLocalMedal(index + 1)}
-                                    className="w-[24px]"
-                                  />
-                                  <img
-                                    src={placeToCtTeamMedal(
-                                      x.globalPosition + 1,
-                                      eventData[ctIds.length - eventNum]
-                                        .totalScores!
-                                    )}
-                                    className="w-[24px]"
-                                  />
-                                  <input
-                                    className="font-semibold w-full"
-                                    type="text"
-                                    placeholder="Team Name"
-                                    value={x.name}
-                                    id={"team-" + index + "-name"}
-                                    onChange={(x) => {
-                                      updateInProg();
-                                    }}
-                                  />
-                                </label>
-                                <div className="flex gap-4">
-                                  <label className="flex gap-4 cursor-pointer items-center">
-                                    <input
-                                      type="checkbox"
-                                      className="checkbox"
-                                      id={"team-" + index + "-truce"}
-                                      onChange={(x) => {
-                                        updateInProg();
-                                      }}
-                                    />
-                                    <span className="label-text">Truce</span>
-                                  </label>
-                                  <label className="flex gap-4 cursor-pointer items-center">
-                                    <input
-                                      type="checkbox"
-                                      className="checkbox"
-                                      id={"team-" + index + "-ayo"}
-                                      onChange={(x) => {
-                                        updateInProg();
-                                      }}
-                                    />
-                                    <span className="label-text">👀</span>
-                                  </label>
-                                </div>
-                              </div>
-                            ))}
-                            <button
-                              className="btn btn-success"
-                              onClick={() => {
-                                addLocalBattle();
-                              }}
-                            >
-                              Add Battle
-                            </button>
-                          </div>
-                          <div className="modal-action">
-                            <form method="dialog">
-                              {/* if there is a button in form, it will close the modal */}
-                              <button className="btn outline outline-1 outline-error text-error">
-                                Close
-                              </button>
-                            </form>
-                          </div>
-                        </div>
-                        <form method="dialog" className="modal-backdrop">
-                          <button>close</button>
-                        </form>
-                      </dialog>
-                      <button
-                        className={"btn"}
-                        onClick={() =>
-                          (
-                            document.getElementById("") as HTMLFormElement
-                          ).showModal()
-                        }
-                      >
-                        x
-                      </button>
-                    </div>
-                  ))}
+                        .join("\n")}
+                        
+                        # Local Battles:
+                        ${localBattles
+                          .map((battle, index) =>
+                            battle.teams
+                              .filter((x) => x.name)
+                              .map(
+                                (team, teamIndex) =>
+                                  `${
+                                    teamIndex <= 3
+                                      ? `:LT${teamIndex + 1}:`
+                                      : ":x:"
+                                  }${team.isAyo ? ":eyes:" : ""}${
+                                    team.globalPosition + 1 <= 100
+                                      ? `:GT${getMedalNum(
+                                          team.globalPosition + 1
+                                        )}:`
+                                      : ""
+                                  } ${team.name}${
+                                    team.truce ? " :handshake:" : ""
+                                  }`
+                              )
+                              .join("\n")
+                          )
+                          .join("\n\n")}
 
-                  <p className="font-bold text-xl">Other Events:</p>
+                        # Other Events:`
+                        .split("\n")
+                        .map((line) => line.trim())
+                        .join("\n")}
+                    />
+                  </label>
                 </div>
               </>
             )}

@@ -133,6 +133,7 @@ export const useLeaderboard = (
             await response.json();
 
           jsonData.body = jsonData.body.concat(newJsonData.body);
+          console.log("got page: ", i);
         }
 
         if (
