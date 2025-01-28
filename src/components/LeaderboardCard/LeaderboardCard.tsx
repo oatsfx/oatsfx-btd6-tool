@@ -230,7 +230,7 @@ const LeaderboardCard = ({
         );
         break;
     }
-    return <img src={medal} className="w-[26px]" />;
+    return <img src={medal} className="w-[34px]" />;
   };
 
   const handleDisplayMedals = () => {
@@ -436,7 +436,7 @@ const LeaderboardCard = ({
       />
       <div
         key={entry.profile}
-        className="indicator w-full flex outline outline-2 outline-white/30 hover:cursor-pointer justify-between px-6 py-1 bg-center bg-cover"
+        className="indicator w-full flex outline outline-2 outline-white/30 hover:cursor-pointer justify-between px-5 py-1 bg-center bg-cover"
         style={{
           backgroundImage: fetched
             ? `linear-gradient(to bottom, rgba(17, 17, 23, 0.2), rgba(17, 17, 23, 0.6)), url(${profileData.bannerURL})`
