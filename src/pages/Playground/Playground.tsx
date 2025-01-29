@@ -488,9 +488,9 @@ const Playground: React.FC = () => {
                                           team.globalPosition + 1
                                         )}:`
                                       : ""
-                                  } ${team.name}${
-                                    team.truce ? " :handshake:" : ""
-                                  }`
+                                  } ${teamIndex === 0 ? "**" : ""}${team.name}${
+                                    teamIndex === 0 ? "**" : ""
+                                  }${team.truce ? " :handshake:" : ""}`
                               )
                               .join("\n")
                           )
