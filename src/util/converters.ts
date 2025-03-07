@@ -19,23 +19,38 @@ export const roundEven5 = (num: number) => {
   return Math.round(num / 5) * 5;
 };
 
-export const convertMsToTimeFormat = (ms: number): string => {
+export const convertMsToTimeFormat = (
+  ms: number,
+  roundMs: boolean = true
+): string => {
   // Calculate the hours, minutes, seconds, and milliseconds
   const hours = Math.floor(ms / 3600000);
   const minutes = Math.floor((ms % 3600000) / 60000);
   const seconds = Math.floor((ms % 60000) / 1000);
-  const milliseconds = Math.floor((ms % 1000) / 10); // Extract two digits of milliseconds
+  const milliseconds = Math.floor(ms % 1000); // Extract two digits of milliseconds
+  const roundedMs = Math.floor((ms % 1000) / 10); // Extract two digits of milliseconds
 
   // Format each part to ensure two digits
   const formattedHours = hours > 0 ? hours.toString().padStart(2, "0") : "";
   const formattedMinutes = minutes.toString().padStart(2, "0");
   const formattedSeconds = seconds.toString().padStart(2, "0");
-  const formattedMilliseconds = milliseconds.toString().padStart(2, "0");
+  const formattedMilliseconds = roundMs
+    ? roundedMs.toString().padStart(2, "0")
+    : milliseconds.toString().padStart(3, "0");
 
   // Combine and return the formatted string
   return formattedHours
     ? `${formattedHours}:${formattedMinutes}:${formattedSeconds}.${formattedMilliseconds}`
     : `${formattedMinutes}:${formattedSeconds}.${formattedMilliseconds}`;
+};
+
+export const convertMsToSecondsFormat = (ms: number): string => {
+  const seconds = Math.floor(ms / 1000);
+  const milliseconds = Math.round((ms % 1000) / 10); // Round to 2 decimal places
+
+  return milliseconds === 0
+    ? `${seconds}`
+    : `${seconds}.${milliseconds.toString().padStart(2, "0")}`;
 };
 
 export const timeAgo = (timestamp: number): string => {

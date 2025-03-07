@@ -634,7 +634,7 @@ export const bloonStyle: Record<Bloon, string> = {
     "bg-[repeating-linear-gradient(125deg,#121212,#121212_1rem,#d3d3d3_1rem,#d3d3d3_2rem)]",
   ZebraRegrowCamo: "",
   Zomg: "bg-[#6b7666] outline outline-2 outline-[#9cfb00]",
-  ZomgFortified: "bg-[#6b7666]",
+  ZomgFortified: "bg-[#6b7666] outline outline-2 outline-[#9cfb00]",
 };
 
 export const bloonImage: Record<Bloon, string> = {
