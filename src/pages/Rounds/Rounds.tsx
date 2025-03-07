@@ -8,7 +8,10 @@ import {
   getRoundDurationMs,
   Round,
 } from "types/roundSet";
-import { convertMsToTimeFormat } from "util/converters";
+import {
+  convertMsToSecondsFormat,
+  convertMsToTimeFormat,
+} from "util/converters";
 import { bloonImage, bloonStyle } from "util/formatters";
 import { FaFilter } from "react-icons/fa";
 import { Loading } from "components/Loading";
@@ -390,7 +393,7 @@ const Rounds: React.FC = () => {
                     Round {round.roundNumber}
                   </p>
                   <p className="text-lg font-semibold">
-                    {getRoundDurationMs(round) / 1000}s
+                    {convertMsToSecondsFormat(getRoundDurationMs(round))}s
                   </p>
                 </div>
                 <div className="flex flex-col gap-2">
