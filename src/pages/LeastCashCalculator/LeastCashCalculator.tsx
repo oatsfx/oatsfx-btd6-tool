@@ -1035,8 +1035,8 @@ const LeastCashCalculator: React.FC = () => {
             data={ctData}
             loading={loading}
             selectedTile={selectedTile}
+            gameType="least_cash"
             changeTile={changeTile}
-            relics={selectedRelics}
           />
           <div className="divider divider-horizontal">
             <svg

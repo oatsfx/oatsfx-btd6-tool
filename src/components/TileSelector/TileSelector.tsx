@@ -4,21 +4,24 @@ import React, { useEffect, useMemo, useState } from "react";
 import bannerImage from "images/ct/banner_s.webp";
 import relicImage from "images/ct/relic_s.webp";
 import blankImage from "images/ct/regular_s.webp";
-import { CTData, Relic, Tile, TileType } from "types/ct";
+import { CTData, GameType, Relic, Tile, TileType } from "types/ct";
 import { relicImages } from "util/formatters";
-import { formatGameEntityName } from "util/converters";
+import {
+  formatGameEntityName,
+  gameTypeToSubGameTypeVal,
+} from "util/converters";
 
 const TileSelector = ({
   data,
   loading,
   selectedTile,
-  relics,
+  gameType,
   changeTile,
 }: {
   data: CTData;
   loading: boolean;
   selectedTile: string;
-  relics: Relic[];
+  gameType: GameType;
   changeTile: (tile: string) => void;
 }) => {
   const [tileFilter, setTileFilter] = useState<TileType | "All">("All");
@@ -47,7 +50,8 @@ const TileSelector = ({
       .sort()
       .reduce((filtered: { [key: string]: Tile }, key) => {
         if (
-          data[key].GameData.subGameType === 8 &&
+          data[key].GameData.subGameType ===
+            gameTypeToSubGameTypeVal[gameType] &&
           (tileFilter === "All" || data[key].TileType === tileFilter)
         ) {
           filtered[key] = data[key];
@@ -135,7 +139,8 @@ const TileSelector = ({
                 <ul className="p-2 shadow-xl menu dropdown-content z-[1] bg-base-100 rounded-box w-52 outline outline-white/25 outline-1">
                   {Object.entries(data).map((tile) =>
                     tile[1].TileType === "Relic" &&
-                    tile[1].GameData.subGameType === 8 ? (
+                    tile[1].GameData.subGameType ===
+                      gameTypeToSubGameTypeVal[gameType] ? (
                       <li key={tile[1].RelicType as string}>
                         <a
                           id={tile[0]}
