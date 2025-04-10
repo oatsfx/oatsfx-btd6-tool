@@ -8,9 +8,11 @@ import {
   getRoundDurationFrameMs,
   getRoundDurationMs,
   Round,
-  RoundSetDef,
 } from "types/roundSet";
 import { convertMsToTimeFormat } from "util/converters";
+import { TileSelector } from "components/TileSelector";
+import ctIds from "configs/ctIds.config";
+import { useCtData } from "hooks/useCtData";
 
 const RaceTimeCalculator: React.FC = () => {
   const [startRound, setStartRound] = useState(1);
@@ -25,6 +27,13 @@ const RaceTimeCalculator: React.FC = () => {
   const [inputMs, setInputMs] = useState(0);
   const [goalMs, setGoalMs] = useState(0);
 
+  const [eventNum, setEventNum] = useState<number>(ctIds[0].number);
+  const { data: ctData, loading: ctLoading } = useCtData(eventNum);
+  const [ctScore, setCtScore] = useState(0);
+  const [ctMode, setCtMode] = useState(false);
+  const [selectedTile, setSelectedTile] = useState("");
+
+  const loading = ctLoading || roundLoading;
   const SEND_DELAY_MS = 200;
 
   const handleStartChange = (e: any) => {
@@ -55,6 +64,13 @@ const RaceTimeCalculator: React.FC = () => {
     if (value <= startRound) {
       setStartRound(value);
     }
+  };
+
+  const changeTile = (tile: string) => {
+    setSelectedTile(tile);
+    console.log(tile);
+    console.log(ctData[tile]);
+    setEndRound(ctData[tile].GameData.dcModel.startRules.endRound);
   };
 
   const calculateTime = (start: number, end: number, delay: number): number => {
@@ -90,12 +106,17 @@ const RaceTimeCalculator: React.FC = () => {
   const calculateGoalTime = (
     start: number,
     end: number,
-    goal: number
+    goal: number,
+    ctTime?: number
   ): number => {
     const longestRound = calculateLongestRound(start, end);
     const longestRoundDuration = getRoundDurationFrameMs(longestRound);
     const timeToSend = SEND_DELAY_MS * (longestRound.roundNumber - start);
     const finalMs = goal - (longestRoundDuration + timeToSend + 1000 / 60);
+
+    if (ctTime && ctTime > finalMs && ctMode) {
+      return ctTime - finalMs;
+    }
 
     return finalMs < 0 ? 0 : finalMs;
   };
@@ -183,6 +204,7 @@ const RaceTimeCalculator: React.FC = () => {
               max={roundData.rounds.length}
               value={startRound}
               onChange={handleStartChange}
+              disabled={ctMode}
               className="range"
             />
             <label className="input input-bordered flex items-center gap-2">
@@ -193,6 +215,7 @@ const RaceTimeCalculator: React.FC = () => {
                 placeholder="Start"
                 value={startRound}
                 onChange={handleStartChange}
+                disabled={ctMode}
               />
             </label>
           </div>
@@ -203,6 +226,7 @@ const RaceTimeCalculator: React.FC = () => {
               max={roundData.rounds.length}
               value={endRound}
               onChange={handleEndChange}
+              disabled={ctMode}
               className="range"
             />
             <label className="input input-bordered flex items-center gap-2">
@@ -213,6 +237,7 @@ const RaceTimeCalculator: React.FC = () => {
                 placeholder="End"
                 value={endRound}
                 onChange={handleEndChange}
+                disabled={ctMode}
               />
             </label>
           </div>
@@ -237,10 +262,45 @@ const RaceTimeCalculator: React.FC = () => {
             ]}
           />
           {selectedCalc === "goal" ? (
-            <div className="items-center text-center py-6">
-              <p>Time you want to achieve:</p>
-              <TimeInput value={goalMs} onChange={setGoalMs} />
-            </div>
+            <>
+              <div className="pt-4">
+                <label className="flex gap-4 cursor-pointer items-center">
+                  <input
+                    type="checkbox"
+                    checked={ctMode}
+                    className="checkbox"
+                    onChange={() => setCtMode((p) => !p)}
+                  />
+                  <span className="label-text">CT Mode</span>
+                </label>
+              </div>
+              {ctMode ? (
+                <TileSelector
+                  data={ctData}
+                  loading={loading}
+                  selectedTile={selectedTile}
+                  gameType="race"
+                  changeTile={changeTile}
+                />
+              ) : (
+                <></>
+              )}
+              <div className="flex gap-6 items-center py-4">
+                <div className="items-center text-center">
+                  <p>Time you want to achieve:</p>
+                  <TimeInput value={goalMs} onChange={setGoalMs} />
+                </div>
+
+                {ctMode ? (
+                  <div className="items-center text-center">
+                    <p>Time on the CT Tile:</p>
+                    <TimeInput value={ctScore} onChange={setCtScore} />
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </div>
+            </>
           ) : (
             <div className="items-center text-center py-6">
               <p>
@@ -280,7 +340,7 @@ const RaceTimeCalculator: React.FC = () => {
                     <div className="text-3xl font-semibold flex items-center gap-2">
                       <img src={raceImage} className="h-[32px]" />
                       {convertMsToTimeFormat(
-                        calculateGoalTime(startRound, endRound, goalMs)
+                        calculateGoalTime(startRound, endRound, goalMs, ctScore)
                       )}
                       <img src={raceImage} className="h-[32px]" />
                     </div>
@@ -324,26 +384,31 @@ const RaceTimeCalculator: React.FC = () => {
             )}
           </div>
           <ul className="list-disc items-center">
-            {calculateMoreData(
-              selectedCalc === "rtime"
-                ? calculateTime(startRound, endRound, inputMs)
-                : goalMs
-            ).map((x, i) => (
-              <li key={i}>
-                then send from Round{" "}
-                <span className="text-xl font-bold">
-                  {x.startRound.roundNumber}
-                </span>{" "}
-                to Round{" "}
-                <span className="text-xl font-bold">
-                  {x.endRound.roundNumber}
-                </span>{" "}
-                before{" "}
-                <span className="text-xl font-bold">
-                  {convertMsToTimeFormat(x.time)}
-                </span>
-              </li>
-            ))}
+            {goalMs <
+            addDelay(calculateTime(startRound, endRound, inputMs), inputMs) ? (
+              <></>
+            ) : (
+              calculateMoreData(
+                selectedCalc === "rtime"
+                  ? calculateTime(startRound, endRound, inputMs)
+                  : goalMs
+              ).map((x, i) => (
+                <li key={i}>
+                  then send from Round{" "}
+                  <span className="text-xl font-bold">
+                    {x.startRound.roundNumber}
+                  </span>{" "}
+                  to Round{" "}
+                  <span className="text-xl font-bold">
+                    {x.endRound.roundNumber}
+                  </span>{" "}
+                  before{" "}
+                  <span className="text-xl font-bold">
+                    {convertMsToTimeFormat(x.time)}
+                  </span>
+                </li>
+              ))
+            )}
           </ul>
         </div>
       )}

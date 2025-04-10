@@ -1,4 +1,4 @@
-import { Relic, Tower } from "types/ct";
+import { GameType, Relic, Tower } from "types/ct";
 import {
   bossEliteMedalImages,
   bossNormalMedalImages,
@@ -408,4 +408,11 @@ export const prettyNames: { [key in EventType]: string } = {
   Boss4: "Quad",
   CtPlayer: "Player",
   CtTeam: "Team",
+};
+
+export const gameTypeToSubGameTypeVal: { [key in GameType]: number } = {
+  race: 2,
+  boss: 4,
+  least_cash: 8,
+  least_tiers: 9,
 };

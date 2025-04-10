@@ -11,6 +11,7 @@ export type Tile = {
 export type GameData = {
   selectedMap: string;
   selectedMode: Mode;
+  // 2 - Race; 8 - LC; 9 - LT
   subGameType: number;
   selectedDifficulty: Difficulty;
   dcModel: DcModel;
