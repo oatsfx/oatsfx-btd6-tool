@@ -404,7 +404,7 @@ const RaceTimeCalculator: React.FC = () => {
                   </span>{" "}
                   before{" "}
                   <span className="text-xl font-bold">
-                    {convertMsToTimeFormat(x.time)}
+                    {convertMsToTimeFormat(ctMode ? ctScore - x.time : x.time)}
                   </span>
                 </li>
               ))
