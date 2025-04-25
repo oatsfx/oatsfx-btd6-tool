@@ -204,7 +204,7 @@ const RaceTimeCalculator: React.FC = () => {
               max={roundData.rounds.length}
               value={startRound}
               onChange={handleStartChange}
-              disabled={ctMode}
+              disabled={ctMode && selectedCalc === "goal"}
               className="range"
             />
             <label className="input input-bordered flex items-center gap-2">
@@ -215,7 +215,7 @@ const RaceTimeCalculator: React.FC = () => {
                 placeholder="Start"
                 value={startRound}
                 onChange={handleStartChange}
-                disabled={ctMode}
+                disabled={ctMode && selectedCalc === "goal"}
               />
             </label>
           </div>
@@ -226,7 +226,7 @@ const RaceTimeCalculator: React.FC = () => {
               max={roundData.rounds.length}
               value={endRound}
               onChange={handleEndChange}
-              disabled={ctMode}
+              disabled={ctMode && selectedCalc === "goal"}
               className="range"
             />
             <label className="input input-bordered flex items-center gap-2">
@@ -237,7 +237,7 @@ const RaceTimeCalculator: React.FC = () => {
                 placeholder="End"
                 value={endRound}
                 onChange={handleEndChange}
-                disabled={ctMode}
+                disabled={ctMode && selectedCalc === "goal"}
               />
             </label>
           </div>
