@@ -353,6 +353,7 @@ export const towerTypes: { [key in Tower]: TowerType } = {
   BombShooter: "primary",
   DartMonkey: "primary",
   DartlingGunner: "military",
+  Desperado: "primary",
   Druid: "magic",
   EngineerMonkey: "support",
   GlueGunner: "primary",

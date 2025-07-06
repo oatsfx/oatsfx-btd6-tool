@@ -6,6 +6,7 @@ import bombShooterImage from "images/towers/bomb_shooter.webp";
 import boomerangMonkeyImage from "images/towers/boomerang_monkey.webp";
 import dartMonkeyImage from "images/towers/dart_monkey.webp";
 import dartlingGunnerImage from "images/towers/dartling_gunner.webp";
+import desperadoImage from "images/towers/desperado.webp";
 import druidImage from "images/towers/druid.webp";
 import engineerMonkeyImage from "images/towers/engineer_monkey.webp";
 import glueGunnerImage from "images/towers/glue_gunner.webp";
@@ -236,6 +237,7 @@ export const towerImages: Record<Tower, string> = {
   BombShooter: bombShooterImage,
   DartMonkey: dartMonkeyImage,
   DartlingGunner: dartlingGunnerImage,
+  Desperado: desperadoImage,
   Druid: druidImage,
   EngineerMonkey: engineerMonkeyImage,
   GlueGunner: glueGunnerImage,
