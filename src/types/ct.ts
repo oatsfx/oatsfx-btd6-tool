@@ -75,6 +75,7 @@ export type Tower =
   | "TackShooter"
   | "IceMonkey"
   | "GlueGunner"
+  | "Desperado"
   | "SniperMonkey"
   | "MonkeySub"
   | "MonkeyBuccaneer"
