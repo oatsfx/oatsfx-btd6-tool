@@ -8,7 +8,6 @@ import {
   raceMedalImages,
 } from "./formatters";
 import { EventType } from "types/events";
-import ctIds from "configs/ctIds.config";
 
 export type TowerType = "primary" | "military" | "magic" | "support" | "hero";
 

@@ -1,7 +1,7 @@
 import { LeaderboardCard } from "components/LeaderboardCard";
 import { Loading } from "components/Loading";
 import { SelectionRow } from "components/SelectionRow";
-import ctIds from "configs/ctIds.config";
+import { useCtEvents } from "hooks/useCtEvents";
 import { useLeaderboard } from "hooks/useLeaderboard";
 import { useEffect, useState } from "react";
 import { BossMode, EventType } from "types/events";
@@ -14,6 +14,7 @@ const Leaderboard: React.FC = () => {
     message: "",
   });
 
+  const { data: ctEventData, loading: ctEventLoading } = useCtEvents();
   const [leaderboardType, setLeaderboardType] = useState<EventType>("Race");
   const [eventPos, setEventPos] = useState(0);
   const [page, setPage] = useState(1);
@@ -263,10 +264,13 @@ const Leaderboard: React.FC = () => {
                   : leaderboardType === "CtPlayer" ||
                     leaderboardType === "CtTeam"
                   ? `${
-                      ctIds.filter((x) => x.id === eventData[eventPos].id)[0]
-                        .number
+                      ctEventData.filter(
+                        (x) => x.id === eventData[eventPos].id
+                      )[0].number
                     } (${
-                      ctIds.filter((x) => x.id === eventData[eventPos].id)[0].id
+                      ctEventData.filter(
+                        (x) => x.id === eventData[eventPos].id
+                      )[0].id
                     })`
                   : eventData[eventPos].id
               }
@@ -277,8 +281,8 @@ const Leaderboard: React.FC = () => {
                     ? x.name
                     : leaderboardType === "CtPlayer" ||
                       leaderboardType === "CtTeam"
-                    ? `${ctIds.filter((a) => a.id === x.id)[0].number} (${
-                        ctIds.filter((a) => a.id === x.id)[0].id
+                    ? `${ctEventData.filter((a) => a.id === x.id)[0].number} (${
+                        ctEventData.filter((a) => a.id === x.id)[0].id
                       })`
                     : eventData[eventPos].id}
                 </option>

@@ -16,13 +16,14 @@ import {
 import { SolutionManager } from "components/SolutionManager";
 import { TowerDisplay } from "components/TowerDisplay";
 import { useLeaderboard } from "hooks/useLeaderboard";
-import ctIds from "configs/ctIds.config";
 import { useCtEventRelics } from "hooks/useCtEventRelics";
 import { useHeroCostData } from "hooks/useHeroCostData";
 import { Loading } from "components/Loading";
+import { useCtEvents } from "hooks/useCtEvents";
 
 const LeastCashCalculator: React.FC = () => {
-  const [eventNum, setEventNum] = useState<number>(ctIds[0].number);
+  const { data: ctEventData, loading: ctEventLoading } = useCtEvents();
+  const [eventNum, setEventNum] = useState<number>(ctEventData.length - 1);
 
   const { data: ctData, loading: ctLoading } = useCtData(eventNum);
   const { data: eventRelics, loading: eventRelicsLoading } =
@@ -637,7 +638,7 @@ const LeastCashCalculator: React.FC = () => {
             }}
             value={eventNum}
           >
-            {ctIds.map((x) => (
+            {ctEventData.map((x) => (
               <option
                 key={x.number}
                 value={x.number}
