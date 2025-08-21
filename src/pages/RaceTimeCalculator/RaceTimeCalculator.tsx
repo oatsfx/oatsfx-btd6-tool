@@ -11,8 +11,8 @@ import {
 } from "types/roundSet";
 import { convertMsToTimeFormat } from "util/converters";
 import { TileSelector } from "components/TileSelector";
-import ctIds from "configs/ctIds.config";
 import { useCtData } from "hooks/useCtData";
+import { useCtEvents } from "hooks/useCtEvents";
 
 const RaceTimeCalculator: React.FC = () => {
   const [startRound, setStartRound] = useState(1);
@@ -27,7 +27,9 @@ const RaceTimeCalculator: React.FC = () => {
   const [inputMs, setInputMs] = useState(0);
   const [goalMs, setGoalMs] = useState(0);
 
-  const [eventNum, setEventNum] = useState<number>(ctIds[0].number);
+  const { data: ctEventData, loading: ctEventLoading } = useCtEvents();
+  const [eventNum, setEventNum] = useState<number>(ctEventData.length - 1);
+
   const { data: ctData, loading: ctLoading } = useCtData(eventNum);
   const [ctScore, setCtScore] = useState(0);
   const [ctMode, setCtMode] = useState(false);

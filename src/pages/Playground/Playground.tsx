@@ -1,8 +1,8 @@
 import { Loading } from "components/Loading";
-import ctIds from "configs/ctIds.config";
 import { useCtDailyRelics } from "hooks/useCtDailyRelics";
 import { useCtData } from "hooks/useCtData";
 import { useCtEventRelics } from "hooks/useCtEventRelics";
+import { useCtEvents } from "hooks/useCtEvents";
 import { useLeaderboard } from "hooks/useLeaderboard";
 import { useEffect, useState } from "react";
 import { FaEye, FaHandshake } from "react-icons/fa";
@@ -21,7 +21,8 @@ import {
 const Playground: React.FC = () => {
   const [playgroundInput, setPlaygroundInput] = useState<number>(0);
 
-  const [eventNum, setEventNum] = useState<number>(ctIds[0].number);
+  const { data: ctEventData, loading: ctEventLoading } = useCtEvents();
+  const [eventNum, setEventNum] = useState<number>(ctEventData.length - 1);
 
   const { data: ctData, loading: ctLoading } = useCtData(eventNum);
   const { data: eventRelics, loading: eventRelicsLoading } =
@@ -52,7 +53,13 @@ const Playground: React.FC = () => {
     events: eventData,
     loading,
     error,
-  } = useLeaderboard("CtTeam", ctIds.length - eventNum, page, undefined, 4);
+  } = useLeaderboard(
+    "CtTeam",
+    ctEventData.length - eventNum,
+    page,
+    undefined,
+    4
+  );
 
   const totalLoading =
     loading || ctLoading || eventRelicsLoading || dailyRelicsLoading;
@@ -205,7 +212,7 @@ const Playground: React.FC = () => {
             }}
             value={eventNum}
           >
-            {ctIds
+            {ctEventData
               .filter((x) => eventData.some((e) => e.id === x.id))
               .map((x) => (
                 <option
@@ -232,9 +239,9 @@ const Playground: React.FC = () => {
                   readOnly
                   className="textarea textarea-bordered w-full"
                   value={`Event ${eventNum} (${formatDateToEventHighlightDate(
-                    eventData[ctIds.length - eventNum].start
+                    eventData[ctEventData.length - eventNum].start
                   )}-${formatDateToEventHighlightDate(
-                    eventData[ctIds.length - eventNum].end
+                    eventData[ctEventData.length - eventNum].end
                   )})`
                     .split("\n")
                     .map((line) => line.trim())
@@ -250,13 +257,13 @@ const Playground: React.FC = () => {
                   readOnly
                   className="textarea textarea-bordered w-full min-h-96"
                   value={`## Event ID: \`${
-                    eventData[ctIds.length - eventNum].id
+                    eventData[ctEventData.length - eventNum].id
                   }\`
 
                 ## Event Timeline:
-                <t:${eventData[ctIds.length - eventNum].start / 1000}> - <t:${
-                    eventData[ctIds.length - eventNum].end / 1000
-                  }>
+                <t:${
+                  eventData[ctEventData.length - eventNum].start / 1000
+                }> - <t:${eventData[ctEventData.length - eventNum].end / 1000}>
                 
                 ### Event Relics:
                 ${eventRelics
@@ -367,7 +374,8 @@ const Playground: React.FC = () => {
                             <img
                               src={placeToCtTeamMedal(
                                 x.globalPosition + 1,
-                                eventData[ctIds.length - eventNum].totalScores!
+                                eventData[ctEventData.length - eventNum]
+                                  .totalScores!
                               )}
                               className="w-[24px]"
                             />
@@ -457,7 +465,8 @@ const Playground: React.FC = () => {
                           (x, index) =>
                             `${placeToCtHistoryEmote(
                               index + 1,
-                              eventData[ctIds.length - eventNum].totalScores!
+                              eventData[ctEventData.length - eventNum]
+                                .totalScores!
                             )} **${x.displayName}** | :CTPoints: \`${
                               x.score
                             }\` ${

@@ -163,3 +163,8 @@ export type Relic =
   | "SupportSimians"
   | "Techbot"
   | "Thrive";
+
+export type CTSeed = {
+  id: string;
+  number: number;
+};
