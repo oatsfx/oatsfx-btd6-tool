@@ -24,7 +24,6 @@ const Playground: React.FC = () => {
   const { data: ctEventData, loading: ctEventLoading } = useCtEvents();
   const [eventNum, setEventNum] = useState<number>(ctEventData.length - 1);
 
-  const { data: ctData, loading: ctLoading } = useCtData(eventNum);
   const { data: eventRelics, loading: eventRelicsLoading } =
     useCtEventRelics(eventNum);
   const { data: dailyRelics, loading: dailyRelicsLoading } =
@@ -62,7 +61,7 @@ const Playground: React.FC = () => {
   );
 
   const totalLoading =
-    loading || ctLoading || eventRelicsLoading || dailyRelicsLoading;
+    loading || eventRelicsLoading || dailyRelicsLoading || ctEventLoading;
   const isError = error;
 
   const addLocalBattle = () => {
@@ -239,9 +238,9 @@ const Playground: React.FC = () => {
                   readOnly
                   className="textarea textarea-bordered w-full"
                   value={`Event ${eventNum} (${formatDateToEventHighlightDate(
-                    eventData[ctEventData.length - eventNum].start
+                    eventData[ctEventData.length - eventNum]?.start
                   )}-${formatDateToEventHighlightDate(
-                    eventData[ctEventData.length - eventNum].end
+                    eventData[ctEventData.length - eventNum]?.end
                   )})`
                     .split("\n")
                     .map((line) => line.trim())
@@ -257,13 +256,13 @@ const Playground: React.FC = () => {
                   readOnly
                   className="textarea textarea-bordered w-full min-h-96"
                   value={`## Event ID: \`${
-                    eventData[ctEventData.length - eventNum].id
+                    eventData[ctEventData.length - eventNum]?.id
                   }\`
 
                 ## Event Timeline:
                 <t:${
-                  eventData[ctEventData.length - eventNum].start / 1000
-                }> - <t:${eventData[ctEventData.length - eventNum].end / 1000}>
+                  eventData[ctEventData.length - eventNum]?.start / 1000
+                }> - <t:${eventData[ctEventData.length - eventNum]?.end / 1000}>
                 
                 ### Event Relics:
                 ${eventRelics
