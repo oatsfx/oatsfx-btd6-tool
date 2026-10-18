@@ -68,7 +68,7 @@ const LeastCashCalculator: React.FC = () => {
         .find((x) => x.tower === "MonkeyVillage")
     ) {
       console.log(
-        "uh oh... a village tile! that'll cause issues with calculations"
+        "uh oh... a village tile! that'll cause issues with calculations",
       );
     }
 
@@ -78,7 +78,7 @@ const LeastCashCalculator: React.FC = () => {
         .find((x) => x.tower === "Geraldo")
     ) {
       console.log(
-        "uh oh... a geraldo tile! that bozo has a bunch of items that cost cash! luckily all of his things cost the same at every level. HOWEVER, i am too lazy to implement that atm"
+        "uh oh... a geraldo tile! that bozo has a bunch of items that cost cash! luckily all of his things cost the same at every level. HOWEVER, i am too lazy to implement that atm",
       );
     }
 
@@ -229,6 +229,12 @@ const LeastCashCalculator: React.FC = () => {
   };
 
   useEffect(() => {
+    if (ctEventData.length > 0) {
+      setEventNum(ctEventData.length);
+    }
+  }, [ctEventData.length]);
+
+  useEffect(() => {
     if (calculating) {
       setTimeout(() => {
         calculateReverseCash();
@@ -271,7 +277,7 @@ const LeastCashCalculator: React.FC = () => {
     const relicMod = monkeyTycoonMod + marchingBootsMod;
     // Initialize with difficulty multiplier.
     const priceMults: [
-      { towerType: TowerType | "all"; costMultipiler: number }
+      { towerType: TowerType | "all"; costMultipiler: number },
     ] = [
       {
         towerType: "all",
@@ -345,7 +351,7 @@ const LeastCashCalculator: React.FC = () => {
             const [top, mid, bot] = path;
             // Assumed that index 0 is always difficulty multiplier.
             const initialCost = roundEven5(
-              prices.cost * priceMults[0].costMultipiler
+              prices.cost * priceMults[0].costMultipiler,
             );
             let cost =
               initialCost +
@@ -359,7 +365,7 @@ const LeastCashCalculator: React.FC = () => {
                     total +=
                       roundEven5(
                         prices.upgrades.top_path[i] *
-                          priceMults[j].costMultipiler
+                          priceMults[j].costMultipiler,
                       ) || 0;
                 }
                 return total;
@@ -374,7 +380,7 @@ const LeastCashCalculator: React.FC = () => {
                   total +=
                     roundEven5(
                       prices.upgrades.middle_path[i] *
-                        priceMults[j].costMultipiler
+                        priceMults[j].costMultipiler,
                     ) || 0;
               }
               return total;
@@ -389,7 +395,7 @@ const LeastCashCalculator: React.FC = () => {
                   total +=
                     roundEven5(
                       prices.upgrades.bottom_path[i] *
-                        priceMults[j].costMultipiler
+                        priceMults[j].costMultipiler,
                     ) || 0;
               }
 
@@ -432,7 +438,7 @@ const LeastCashCalculator: React.FC = () => {
               cost: heroCostData[x.tower].cost,
               isHero: true,
             };
-          })
+          }),
         )
         .filter((a) => {
           // Remove any undefined towers and towers that cost more than the target score.
@@ -448,7 +454,7 @@ const LeastCashCalculator: React.FC = () => {
       const startTowers: TowerPath[] = [];
       towerFilters.map((tower) => {
         const pathWithCost = purchasables.find(
-          (p) => p.name === tower.name && p.path === tower.path
+          (p) => p.name === tower.name && p.path === tower.path,
         );
 
         if (pathWithCost) startTowers.push(pathWithCost);
@@ -479,7 +485,7 @@ const LeastCashCalculator: React.FC = () => {
                 remaining: tileHero.max,
                 isHero: true,
               };
-            })
+            }),
           ),
         block: (solution: TowerPath[]) => {
           if (solution.length >= 0) {
@@ -504,9 +510,9 @@ const LeastCashCalculator: React.FC = () => {
                     ctData[selectedTile].GameData.dcModel.startRules.cash +
                       startingStashMod
                   );
-                }).length !== 0
+                }).length !== 0,
             )
-            .sort((a, b) => a.length - b.length)
+            .sort((a, b) => a.length - b.length),
         );
       } else {
         setSolutions(newSolutions.sort((a, b) => a.length - b.length));
@@ -570,7 +576,7 @@ const LeastCashCalculator: React.FC = () => {
 
     // Handle tower limits.
     const towerLimitIndex = perTowerLimits.findIndex((a) =>
-      name.includes(a.name)
+      name.includes(a.name),
     );
 
     if (
@@ -583,7 +589,7 @@ const LeastCashCalculator: React.FC = () => {
         // Once we find a Box of Monkey tower, remove it, because we don't want other
         // Box of Monkey towers in the solution. That's not how the relic works :).
         potentialTowers: potentialTowers.filter((x) =>
-          boxOfMonkey ? !x.boxOfMonkey : true
+          boxOfMonkey ? !x.boxOfMonkey : true,
         ),
         towerLimit: towerLimit - 1,
         perTowerLimits: perTowerLimits.map((a) =>
@@ -591,8 +597,8 @@ const LeastCashCalculator: React.FC = () => {
           a.isHero && tower.isHero
             ? { ...a, remaining: 0 }
             : a.name === name
-            ? { ...a, remaining: a.remaining - 1 }
-            : a
+              ? { ...a, remaining: a.remaining - 1 }
+              : a,
         ),
         block: (solution: TowerPath[]) => {
           block([tower, ...solution]);
@@ -721,8 +727,8 @@ const LeastCashCalculator: React.FC = () => {
                         ctData[
                           selectedTile
                         ].GameData.dcModel.towers._items.filter(
-                          (x) => x.isHero && x.max !== 0
-                        )
+                          (x) => x.isHero && x.max !== 0,
+                        ),
                       ).map((tower) => (
                         <div className={"basis-1/2 px-4"} key={tower[0]}>
                           <div className="flex items-center gap-2">
@@ -853,8 +859,8 @@ const LeastCashCalculator: React.FC = () => {
                         ctData[
                           selectedTile
                         ].GameData.dcModel.towers._items.filter(
-                          (x) => !x.isHero && x.max !== 0
-                        )
+                          (x) => !x.isHero && x.max !== 0,
+                        ),
                       ).map((tower) => (
                         <div className={"basis-1/2 px-4"} key={tower[0]}>
                           <div className="flex items-center gap-2">
@@ -891,7 +897,7 @@ const LeastCashCalculator: React.FC = () => {
                               disabled={
                                 includedTowers.includes(tower[1].tower) ||
                                 towerFilters.some(
-                                  (x) => x.name === tower[1].tower
+                                  (x) => x.name === tower[1].tower,
                                 )
                               }
                             >
@@ -1079,20 +1085,20 @@ const LeastCashCalculator: React.FC = () => {
                   includedTowers.includes(path.name)) &&
                 (towerFilters.length === 0 ||
                   towerFilters.some(
-                    (x) => x.name === path.name && x.path === path.path
-                  ))
+                    (x) => x.name === path.name && x.path === path.path,
+                  )),
             ) &&
             solution.every(
               (path) =>
                 !excludedTowers.includes(path.name) &&
-                !excludedHeroes.includes(path.name)
+                !excludedHeroes.includes(path.name),
             ) &&
             solution.some(
               (path) =>
                 includedHeroes.length === 0 ||
-                includedHeroes.includes(path.name)
+                includedHeroes.includes(path.name),
             ) &&
-            (!showHeroSolutions || solution.some((path) => path.isHero))
+            (!showHeroSolutions || solution.some((path) => path.isHero)),
         )}
         solutionTile={solutionTile}
         solutionNum={solutionCtNum}
